@@ -7,11 +7,13 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
+        //Avanza di una scena rispetto a dove si trova il giocatore
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void QuitGame()
     {
+        //Esce dal gioco
         Debug.Log("Gioco Uscito Correttamente");
         Application.Quit();
     }

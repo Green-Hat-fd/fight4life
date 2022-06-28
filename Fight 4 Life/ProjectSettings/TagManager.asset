@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Food
   layers:
   - Default
   - TransparentFX
@@ -38,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Sfondo
+    uniqueID: 2194255993
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Icone
+    uniqueID: 1355234561
     locked: 0

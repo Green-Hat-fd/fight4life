@@ -4,7 +4,45 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    private bool isDragging;
+    public bool isDragging;
+
+    Vector3 posizOrig;
+    GameObject personaggio;
+
+
+    private void Awake()
+    {
+        posizOrig = transform.position;
+    }
+
+    void Update()
+    {
+        Color mioCol = Color.white;  //Variabile temporanea che serve a cambiare trasparenza
+
+        if (isDragging)
+        {
+            //Prende la posizione del mouse
+            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+
+            //Muove l'oggetto
+            transform.Translate(mousePosition);
+
+            //Riduce la trasparenza
+            mioCol.a = 0.6f;
+
+
+            //Se entra a contatto con un personaggio
+            /* if()
+             * 
+             */
+        }
+        else
+        {
+            transform.position = posizOrig;
+        }
+
+        GetComponent<SpriteRenderer>().color = mioCol;
+    }
 
     public void OnMouseDown()
     {
@@ -16,14 +54,8 @@ public class DragAndDrop : MonoBehaviour
         isDragging = false;
     }
 
-    void Update()
+    public void DareDaMangiare(GameObject person)
     {
-        if (isDragging)
-        {
-            Vector2 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-            transform.Translate(mousePosition);
-        }
+        personaggio = person;
     }
-
-    //Lo script funziona, ma bisogna ancora trovare un modo per farla ritornare alla sua posizione se non droppata sul personaggio
 }
