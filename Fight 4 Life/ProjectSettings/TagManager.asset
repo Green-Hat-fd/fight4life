@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Food
+  - Water
   layers:
   - Default
   - TransparentFX
@@ -44,6 +45,9 @@ TagManager:
     locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Effetti
+    uniqueID: 2531271511
     locked: 0
   - name: Icone
     uniqueID: 1355234561

@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class DragAndDrop : MonoBehaviour
 {
-    public bool isDragging;
-
+    bool isDragging;
     Vector3 posizOrig;
-    GameObject personaggio;
 
 
     private void Awake()
@@ -29,33 +27,28 @@ public class DragAndDrop : MonoBehaviour
 
             //Riduce la trasparenza
             mioCol.a = 0.6f;
-
-
-            //Se entra a contatto con un personaggio
-            /* if()
-             * 
-             */
         }
         else
         {
+            //Torna alla posizione iniziale se non sta venendo trascinato
             transform.position = posizOrig;
         }
 
         GetComponent<SpriteRenderer>().color = mioCol;
     }
 
-    public void OnMouseDown()
+    private void OnMouseDown()
     {
         isDragging = true;
     }
 
-    public void OnMouseUp()
+    private void OnMouseUp()
     {
         isDragging = false;
     }
 
-    public void DareDaMangiare(GameObject person)
+    public bool LeggiDrag()
     {
-        personaggio = person;
+        return isDragging;
     }
 }
