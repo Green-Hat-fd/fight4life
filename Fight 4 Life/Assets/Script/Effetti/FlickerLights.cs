@@ -5,6 +5,8 @@ using UnityEngine;
 public class FlickerLights : MonoBehaviour
 {
     private SpriteRenderer myRenderer;
+    [SerializeField]
+    AudioSource luceSFX;
 
 
     private void Start()
@@ -35,6 +37,7 @@ public class FlickerLights : MonoBehaviour
 
             //Qua accende la luce (quindi l'img nera non si vede)
             myRenderer.enabled = false;
+            luceSFX.PlayOneShot(luceSFX.clip);  //Con suono
         }
     }
 }

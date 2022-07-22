@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class DragAndDrop : MonoBehaviour
 {
@@ -37,6 +38,8 @@ public class DragAndDrop : MonoBehaviour
         GetComponent<SpriteRenderer>().color = mioCol;
     }
 
+    #region Funz. per il mouse
+
     private void OnMouseDown()
     {
         isDragging = true;
@@ -47,8 +50,14 @@ public class DragAndDrop : MonoBehaviour
         isDragging = false;
     }
 
+    #endregion
+
+    #region Funzioni Get personalizzate
+
     public bool LeggiDrag()
     {
         return isDragging;
     }
+
+    #endregion
 }

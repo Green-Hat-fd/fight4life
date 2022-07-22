@@ -2,58 +2,61 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RilevaOggetto : MonoBehaviour
-{
-    [SerializeField]
-    GameObject pannInfo;
 
+public class RilevaOggetto : MonoBehaviour
+{ 
+    [SerializeField]
+    ManagerRisorse managerRisorse;
+
+    //Il codice con le statistiche dell'Empty attaccato al personaggio
+    //[SerializeField]
+    private CharacterStats statsDelPerson;
+
+
+    private void Start()
+    {
+        statsDelPerson = GetComponentInParent<CharacterStats>();
+    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
+        bool cibo_disponibile = managerRisorse.LeggiCibo() > 0,
+             acqua_disponibile = managerRisorse.LeggiAcqua() > 0,
+             medicine_disponibili = managerRisorse.LeggiMedicine() > 0;
+
+        bool hoFame = statsDelPerson.LeggiFamePercent() > 0f,
+             hoSete = statsDelPerson.LeggiSetePercent() > 0f,
+             sonoFerito = statsDelPerson.LeggiVitaPercent() > 0f;
+
+
         //Se trascina e rilascia il mouse con la risorsa
         if (!collision.GetComponent<DragAndDrop>().LeggiDrag())
         {
             //Se ha mangiato...
-            if (collision.CompareTag("Food"))
+            if (collision.CompareTag("Food") && cibo_disponibile && hoFame)
+            {
                 GetComponentInParent<CharacterStats>().ScriviMangiato(true);
+                managerRisorse.TogliCibo();
+            }
 
             //Se ha bevuto...
-            if(collision.CompareTag("Water"))
+            if(collision.CompareTag("Water") && acqua_disponibile && hoSete)
+            {
                 GetComponentInParent<CharacterStats>().ScriviBevuto(true);
+                managerRisorse.TogliAcqua();
+            }
+
+            //Se ha ricevuto delle cure...
+            if(collision.CompareTag("Medicine") && medicine_disponibili && sonoFerito)
+            {
+                GetComponentInParent<CharacterStats>().ScriviCurato(true);
+                managerRisorse.TogliMedicine();
+            }
         }
     }
 
-    #region Funz. per il mouse (Pannello)
-
-    private void OnMouseDown()
+    protected CharacterStats LeggiStatsPerson()
     {
-        //Se il mouse clicca dentro, mostra il pannello delle informazioni
-        //pannInfo.GetComponent<PannelloScript>().ScriviVisibile(true);
-        pannInfo.GetComponent<PannelloScript>().InvertiVisibile();
-
-        /* Nota:
-         * se vuoi tener premuto --> ScriviVisibile(true)
-         * se vuoi clicchi una volta --> InvertiVisibile()
-         */
+        return statsDelPerson;
     }
-
-    private void OnMouseExit()
-    {
-        //Se il mouse esce, nasconde il pannello delle info
-        pannInfo.GetComponent<PannelloScript>().ScriviVisibile(false);
-    }
-
-    //Se rilascia il mouse
-    private void OnMouseUp()
-    {
-        //Se il mouse viene rilasciato, nasconde il pannello delle info
-        //pannInfo.GetComponent<PannelloScript>().ScriviVisibile(false);
-
-        /* Nota:
-         * se vuoi tener premuto --> togli il commento
-         * se vuoi clicchi una volta --> metti la riga sopra a commento
-         */
-    }
-
-    #endregion
 }
