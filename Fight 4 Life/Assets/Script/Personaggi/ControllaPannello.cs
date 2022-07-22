@@ -5,8 +5,10 @@ using UnityEngine.UI;
 using UnityEngine.EventSystems;
 using TMPro;
 
-public class ControllaPannello : RilevaOggetto
+public class ControllaPannello : MonoBehaviour
 {
+    RilevaOggetto scriptGenitore;
+    
     [SerializeField]
     GameObject pannInfo;
 
@@ -18,7 +20,8 @@ public class ControllaPannello : RilevaOggetto
 
     private void Start()
     {
-        
+        scriptGenitore = GetComponent<RilevaOggetto>();
+
         //Prende tutti i figli dal pannello e li assegna alle rispettive variabili
         PrendiNelPannello();
     }
@@ -75,13 +78,13 @@ public class ControllaPannello : RilevaOggetto
     void CambiaPannello()
     {
         //Fa vedere il nome del personaggio nel pannello
-        nomeTxt.text = LeggiStatsPerson().LeggiNome();
+        nomeTxt.text = scriptGenitore.LeggiStatsPerson().LeggiNome();
 
         //Indica a che valore si trova ogni stat (negli slider del pannello)
-        vitaSl.value = LeggiStatsPerson().LeggiVitaPercent();
-        fameSl.value = LeggiStatsPerson().LeggiFamePercent();
-        seteSl.value = LeggiStatsPerson().LeggiSetePercent();
-        stamSl.value = LeggiStatsPerson().LeggiStaminaPercent();
+        vitaSl.value = scriptGenitore.LeggiStatsPerson().LeggiVitaPercent();
+        fameSl.value = scriptGenitore.LeggiStatsPerson().LeggiFamePercent();
+        seteSl.value = scriptGenitore.LeggiStatsPerson().LeggiSetePercent();
+        stamSl.value = scriptGenitore.LeggiStatsPerson().LeggiStaminaPercent();
     }
 
     void PrendiNelPannello()

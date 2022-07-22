@@ -2479,8 +2479,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.5
-  m_fontSizeBase: 12.5
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -3309,7 +3309,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0f4492051a3404f861d8a5d0264d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerRisorse: {fileID: 0}
   pannInfo: {fileID: 67322766}
 --- !u!1 &575507808
 GameObject:
@@ -3639,8 +3638,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.5
-  m_fontSizeBase: 12.5
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -5940,7 +5939,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0f4492051a3404f861d8a5d0264d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerRisorse: {fileID: 0}
   pannInfo: {fileID: 67322766}
 --- !u!1 &913840506
 GameObject:
@@ -6104,8 +6102,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.5
-  m_fontSizeBase: 12.5
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7279,7 +7277,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: dcfb58f486794244281fe751fcbc285f, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 6180106fc6a0df841a3d4e3493669c80, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.5
   m_Pitch: 1
@@ -7800,8 +7798,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 15
-  m_fontSizeBase: 15
+  m_fontSize: 12.5
+  m_fontSizeBase: 12.5
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -9334,7 +9332,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0f4492051a3404f861d8a5d0264d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerRisorse: {fileID: 0}
   pannInfo: {fileID: 67322766}
 --- !u!1 &1343288217
 GameObject:
@@ -10964,8 +10961,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 12.5
-  m_fontSizeBase: 12.5
+  m_fontSize: 12
+  m_fontSizeBase: 12
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -11696,7 +11693,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e0f4492051a3404f861d8a5d0264d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  managerRisorse: {fileID: 0}
   pannInfo: {fileID: 67322766}
 --- !u!1 &1619003382
 GameObject:

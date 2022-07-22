@@ -10,7 +10,7 @@ public class RilevaOggetto : MonoBehaviour
 
     //Il codice con le statistiche dell'Empty attaccato al personaggio
     //[SerializeField]
-    private CharacterStats statsDelPerson;
+    CharacterStats statsDelPerson;
 
 
     private void Start()
@@ -55,7 +55,7 @@ public class RilevaOggetto : MonoBehaviour
         }
     }
 
-    protected CharacterStats LeggiStatsPerson()
+    public CharacterStats LeggiStatsPerson()
     {
         return statsDelPerson;
     }
