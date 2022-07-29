@@ -17,18 +17,27 @@ public class PausaScript : MonoBehaviour
         {
             inPausa = !inPausa;
 
-            if (inPausa)
-            {
-                // Mettere suoni e altra roba
-
-                tlEntrata.Play();
-            }
-            else
-            {
-                // Mettere suoni e altra roba
-
-                tlUscita.Play();
-            }
+            CheckPausa();
         }
+    }
+
+    void CheckPausa()
+    {
+        if (inPausa)
+        {
+            tlEntrata.Play();
+        }
+        else
+        {
+            tlUscita.Play();
+        }
+    }
+
+    //Variabile Set personali
+    public void ScriviPausa(bool p)
+    {
+        inPausa = p;
+
+        CheckPausa();
     }
 }
