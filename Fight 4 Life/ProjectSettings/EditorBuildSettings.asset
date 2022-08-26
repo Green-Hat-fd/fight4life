@@ -11,4 +11,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scene/Metro.unity
     guid: ba7a7344e2ff885408a67e198a5fd6db
+  - enabled: 1
+    path: Assets/Scene/Esplorazione.unity
+    guid: dd7b93834580ed543b10139efcf84ab3
+  - enabled: 1
+    path: Assets/Scene/Finale cattivo.unity
+    guid: d31275418f544584d955c443b6a4d169
+  - enabled: 1
+    path: Assets/Scene/Finale buono.unity
+    guid: 9bb139c1ff48bfe4e9449d338785a2ec
   m_configObjects: {}

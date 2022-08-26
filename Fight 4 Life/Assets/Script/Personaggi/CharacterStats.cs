@@ -83,6 +83,10 @@ public class CharacterStats : MonoBehaviour
             curato = false;
         }
 
+        //Muore se la vita arriva a 0
+        if (vita <= 0)
+            sonoMorto = true;
+
         //Rende o meno trasparente il personaggio se è in esplorazione
         sprPers.color = inEsplorazione ? new Color(.75f, .75f, .75f, .4f) : Color.white;
         ombraObj.SetActive(inEsplorazione || sonoMorto ? false : true);
@@ -108,6 +112,26 @@ public class CharacterStats : MonoBehaviour
         curato = c;
     }
 
+    public void ScriviVita(float v)
+    {
+        vita = v;
+    }
+
+    public void ScriviFame(float f)
+    {
+        fame = f;
+    }
+
+    public void ScriviSete(float s)
+    {
+        sete = s;
+    }
+
+    public void ScriviStanch(float s)
+    {
+        stanchezza = s;
+    }
+
     #endregion
 
     #region Funzioni Get personalizzate
@@ -121,25 +145,46 @@ public class CharacterStats : MonoBehaviour
     {
         return vita / MAX_vita;
     }
+    public float LeggiVita()
+    {
+        return vita;
+    }
 
     public float LeggiFamePercent()
     {
         return fame / MAX_fame;
+    }
+    public float LeggiFame()
+    {
+        return fame;
     }
 
     public float LeggiSetePercent()
     {
         return sete / MAX_sete;
     }
+    public float LeggiSete()
+    {
+        return sete;
+    }
 
-    public float LeggiStaminaPercent()
+    public float LeggiStanchPercent()
     {
         return stanchezza / MAX_stam;
+    }
+    public float LeggiStanch()
+    {
+        return stanchezza;
     }
 
     public bool LeggiSonoMorto()
     {
         return sonoMorto;
+    }
+
+    public bool LeggiInEsplorazione()
+    {
+        return inEsplorazione;
     }
 
     #endregion

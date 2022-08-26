@@ -77,14 +77,25 @@ public class ControllaPannello : MonoBehaviour
 
     void CambiaPannello()
     {
+        bool nonHoVita = scriptGenitore.LeggiStatsPerson().LeggiVitaPercent() <= 0,
+             nonHoFame = scriptGenitore.LeggiStatsPerson().LeggiFamePercent() <= 0,
+             nonHoSete = scriptGenitore.LeggiStatsPerson().LeggiSetePercent() <= 0,
+             nonHoStam = scriptGenitore.LeggiStatsPerson().LeggiStanchPercent() <= 0;
+
         //Fa vedere il nome del personaggio nel pannello
         nomeTxt.text = scriptGenitore.LeggiStatsPerson().LeggiNome();
+
+        //Toglie gli slider se sono arrivati a 0
+        vitaSl.fillRect.GetComponent<Image>().enabled = nonHoVita ? false : true;
+        fameSl.fillRect.GetComponent<Image>().enabled = nonHoFame ? false : true;
+        seteSl.fillRect.GetComponent<Image>().enabled = nonHoSete ? false : true;
+        stamSl.fillRect.GetComponent<Image>().enabled = nonHoStam ? false : true;
 
         //Indica a che valore si trova ogni stat (negli slider del pannello)
         vitaSl.value = scriptGenitore.LeggiStatsPerson().LeggiVitaPercent();
         fameSl.value = scriptGenitore.LeggiStatsPerson().LeggiFamePercent();
         seteSl.value = scriptGenitore.LeggiStatsPerson().LeggiSetePercent();
-        stamSl.value = scriptGenitore.LeggiStatsPerson().LeggiStaminaPercent();
+        stamSl.value = scriptGenitore.LeggiStatsPerson().LeggiStanchPercent();
     }
 
     void PrendiNelPannello()

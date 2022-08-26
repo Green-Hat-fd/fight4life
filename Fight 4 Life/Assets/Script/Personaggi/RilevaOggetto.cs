@@ -12,6 +12,12 @@ public class RilevaOggetto : MonoBehaviour
     //[SerializeField]
     CharacterStats statsDelPerson;
 
+    [Space(15)]
+    [SerializeField]
+    AudioSource sfxMangia;
+    [SerializeField]
+    AudioSource sfxBevi, sfxCurato;
+
 
     private void Start()
     {
@@ -26,9 +32,9 @@ public class RilevaOggetto : MonoBehaviour
 
         bool hoFame = statsDelPerson.LeggiFamePercent() > 0f,
              hoSete = statsDelPerson.LeggiSetePercent() > 0f,
-             sonoFerito = statsDelPerson.LeggiVitaPercent() > 0f;
+             sonoFerito = statsDelPerson.LeggiVitaPercent() < 1f;
 
-
+            
         //Se trascina e rilascia il mouse con la risorsa
         if (!collision.GetComponent<DragAndDrop>().LeggiDrag())
         {
@@ -37,6 +43,7 @@ public class RilevaOggetto : MonoBehaviour
             {
                 GetComponentInParent<CharacterStats>().ScriviMangiato(true);
                 managerRisorse.TogliCibo();
+                sfxMangia.PlayOneShot(sfxMangia.clip);
             }
 
             //Se ha bevuto...
@@ -44,6 +51,7 @@ public class RilevaOggetto : MonoBehaviour
             {
                 GetComponentInParent<CharacterStats>().ScriviBevuto(true);
                 managerRisorse.TogliAcqua();
+                sfxBevi.PlayOneShot(sfxBevi.clip);
             }
 
             //Se ha ricevuto delle cure...
@@ -51,6 +59,7 @@ public class RilevaOggetto : MonoBehaviour
             {
                 GetComponentInParent<CharacterStats>().ScriviCurato(true);
                 managerRisorse.TogliMedicine();
+                sfxCurato.PlayOneShot(sfxCurato.clip);
             }
         }
     }

@@ -33,7 +33,7 @@ public class PausaScript : MonoBehaviour
         }
     }
 
-    //Variabile Set personali
+    //Variabile Set personalizzate
     public void ScriviPausa(bool p)
     {
         inPausa = p;

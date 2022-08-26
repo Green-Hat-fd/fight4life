@@ -2,71 +2,162 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+//using GD.MinMaxSlider;
 
 public class Miragame_delleArmi : MonoBehaviour
 {
+    [SerializeField]
+    ManagerRisorse risorseScript;
+
+    [SerializeField, Tooltip("Se non metti lo slider, lo prende da sé stesso \noppure lo prende dai figli")]
     Slider sliderMG;
 
-    [SerializeField]
-    float velocColt;
-    
+    [SerializeField, Range(0, 3)]
+    int arma;
+
     //Velocità delle armi
-    int velocPist = 40,
-        velocFucLati = 4,
-        velocFucCentro = 15;
+    float velocColt;
+    [SerializeField]
+    float velocPist = 40,
+          velocFucLati = 4,
+          velocFucCentro = 15;
+    
+    //Il numero di arrivo per ogni arma (vedi "Funz. -->" più sotto)
+    float numArrivo,
+          numArrivo_random;
+    
+    /*
+    [SerializeField, MinMaxSlider(1, 10)]  //Il range di velocità rispettivamente del coltello
+    Vector2 range_velC;     [3, 5.5]
+    [SerializeField, MinMaxSlider(-1f, 1f)]  //Il range di quando il fucile deve rallentare
+    Vector2 range_rallentaFuc;      [-0.15, 0.15]
+    */
 
-    [SerializeField, Range(1, 3)]
-    int tipoArma;
-    bool oscillazYN;
+    bool siMuove, aperto;
 
+    [Header("\"Animazione\" della barretta")]
+    [SerializeField]
+    Image barretta;
+    [SerializeField]
+    Sprite spr_barrChiara;
+    [SerializeField]
+    AudioSource musEsplCalma, musEsplNervosa;
 
-    #region Scelta casuale iniziale
 
     private void Start()
     {
-        sliderMG = GetComponent<Slider>();
+        //Se non trova il component Slider, allora prendi quello dei figli,
+        //altrimenti (lo ha trovato) mette il suo
+        sliderMG = GetComponent<Slider>() != null ? GetComponent<Slider>() : GetComponentInChildren<Slider>();
+        
+        if (risorseScript == null)
+            risorseScript = FindObjectOfType<ManagerRisorse>();
 
-        switch (Random.Range(1, 3)) //int a caso in [1, 3)
+        siMuove = true;
+
+        #region Scelta casuale iniziale
+
+        switch (Random.Range(1, 3)) //int a caso in [1, 2]
         {
-            case 1:
-                
-                break;
-            case 2:
-                
-                break;
+            case 1: numArrivo = -1; break;
+            case 2: numArrivo = 1; break;
         }
+        numArrivo_random = Random.Range(-1f, 1f);
+        velocColt = Random.Range(3f, 5.5f);
+        #endregion
     }
-    #endregion
 
-    void FixedUpdate()
+    void Update()
     {
-        bool siMuove = GetComponent<Animator>().GetBool("Muoversi");
+          //Se non trova il component Animator, allora prendi quello dei figli,
+          //altrimenti (lo ha trovato) mette il suo
+        Animator animSlider = GetComponent<Animator>() != null ? GetComponent<Animator>() : GetComponentInChildren<Animator>();
+        int cambioMus = new int();
+        
+        arma = risorseScript.LeggiTipoArma();
 
 
-        /*if (siMuove)
+        #region Animazione di apertura e chiusura
+
+        if (aperto)
         {
-            //Controlla se è arrivato nella posizione (e le scambia)
-            if (transform.position == pos1.position)
-                devoArrivareQui = pos2;
-
-            if (transform.position == pos2.position)
-                devoArrivareQui = pos1;*/
-
-        //Sceglie il tipo di movimento rispetto all'arma selezionata
-        switch (tipoArma)
-        {
-            case 1: MovimentoColtello(); break;
-            case 2: MovimentoPistola(); break;
-            case 3: MovimentoFucile(); break;
+            animSlider.SetBool("Aperto", true);
+            cambioMus = 1;
         }
+        else
+        {
+            animSlider.SetBool("Aperto", false);
+        }
+        #endregion
+
+        //Se si preme spazio, si ferma
+        if (Input.GetKeyDown(KeyCode.Space))
+            siMuove = false;
+
+        #region Cosa fa quando si muove e quando si ferma
+
+        if (siMuove)
+        {
+            //Sceglie il tipo di movimento rispetto all'arma selezionata
+            switch (arma)
+            {
+                case 1: MovimentoColtello(); break;
+                case 2: MovimentoPistola(); break;
+                case 3: MovimentoFucile(); break;
+            }
+        }
+        else
+        {
+            //Avverte che si è premuto [Spazio]
+            barretta.sprite = spr_barrChiara;
+            cambioMus = 0;
+
+            //Ritorna il valore dove si è fermato lo slider
+            print(Mathf.Abs(sliderMG.value)); /*DEBUG*/
+
+
+            //Appena finisce l'animazione, chiude il minigame
+
+        }
+        #endregion
+
+        #region Crossfade della musica
+
+        switch (cambioMus)
+        {
+            //Musica nervosa --> calma
+            case 0:
+                musEsplCalma.volume   = Mathf.Lerp(musEsplCalma.volume,   1f, 1.5f * Time.deltaTime);
+                musEsplNervosa.volume = Mathf.Lerp(musEsplNervosa.volume, 0f, 1.5f * Time.deltaTime);
+                break;
+
+            //Musica calma --> nervosa
+            case 1:
+                musEsplCalma.volume   = Mathf.Lerp(musEsplCalma.volume,   0f, 1.5f * Time.deltaTime);
+                musEsplNervosa.volume = Mathf.Lerp(musEsplNervosa.volume, 1f, 1.5f * Time.deltaTime);
+                break;
+        }
+        #endregion
     }
 
 
     #region Funz. -> Movimento del Coltello
-    //-------------------------DA FINIRE-------------------------//
     void MovimentoColtello()
     {
-        
+        float valore = sliderMG.value;
+
+        //Se la barretta si avvicina al valore preso a caso
+        if(numArrivo_random-.1f <= valore  &&  valore <= numArrivo_random+.1f)
+        {
+            //Prende un nuovo numero & una nuova velocità
+            numArrivo_random = Random.Range(-1f, 1f);
+            velocColt = Random.Range(3f, 5.5f);
+        }
+        else
+        {
+            //Se no, continua a muoversi verso quel numero
+            sliderMG.value = Mathf.MoveTowards(sliderMG.value, numArrivo_random, velocColt*Time.deltaTime);
+        }
     }
 
     #endregion
@@ -74,8 +165,17 @@ public class Miragame_delleArmi : MonoBehaviour
     #region Funz. -> Movimento della Pistola
     void MovimentoPistola()
     {
+        float valore = sliderMG.value;
+
+
+        //Controlla se è arrivato nella alla fine (e la scambia)
+        if (valore >= 1f)
+            numArrivo = -1f;
+        if (valore <= -1f)
+            numArrivo = 1f;
+
         //Movimento in sè
-        sliderMG.value += 1f * velocPist;
+        sliderMG.value = Mathf.MoveTowards(sliderMG.value, numArrivo, velocPist*Time.deltaTime);
     }
     #endregion
 
@@ -85,13 +185,29 @@ public class Miragame_delleArmi : MonoBehaviour
         float valore = sliderMG.value;
 
 
+        //Controlla se è arrivato nella alla fine (e la scambia)
+        if (valore >= 1f)
+            numArrivo = -1f;
+        if (valore <= -1f)
+            numArrivo = 1f;
+
         //Se si trova al centro, accellera...
-        if (valore <= 0.5f && valore >= -0.5f)
-            sliderMG.value += 1f * velocFucCentro;
+        if (valore <= 0.15f && valore >= -0.15f)
+            sliderMG.value = Mathf.MoveTowards(sliderMG.value, numArrivo, velocFucCentro*Time.deltaTime);
         else
             //...se no, va lento
-            sliderMG.value += 1f * velocFucLati;
+            sliderMG.value = Mathf.MoveTowards(sliderMG.value, numArrivo, velocFucLati*Time.deltaTime);
 
     }
+    #endregion
+
+
+    #region Funzioni Set personalizzate
+
+    void ScriviAperturaMinigioco(bool vf)
+    {
+        aperto = vf; 
+    }
+
     #endregion
 }

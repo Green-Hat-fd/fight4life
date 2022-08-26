@@ -9,14 +9,14 @@ public class Singleton : MonoBehaviour
     private void Awake()
     {
         //Se c'è un clone di questo script (nella scena), distruggimi
-        if (istanza != null && istanza == this)
+        if (istanza != null && istanza != this)
         {
-            Destroy(this);
+            Destroy(gameObject);
         }
         else
         {
             istanza = this;
-            DontDestroyOnLoad(this);
+            DontDestroyOnLoad(gameObject);
         }
     }
 }

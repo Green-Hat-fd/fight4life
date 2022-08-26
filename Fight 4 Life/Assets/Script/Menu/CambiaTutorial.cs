@@ -8,8 +8,8 @@ public class CambiaTutorial : MonoBehaviour
 {
     [SerializeField]
     Sprite[] immagini;
-    [SerializeField]
-    string[] spiegazioni;
+    [SerializeField, TextArea]
+    string[] spiegazioni_ITA, spiegazioni_ENG;
 
     [Header("Oggetti da modificare")]
     [SerializeField]
@@ -25,14 +25,41 @@ public class CambiaTutorial : MonoBehaviour
     {
         //Cambia ogni Update() la "slide" del tutorial
         imgTutorial.sprite = immagini[indice];  //L'immagine visualizzata
-        testoTutorial.text = spiegazioni[indice];  //Il testo che spiega
+        
+        switch (OpzioniMainScript.linguaScelta)  //Il testo che spiega
+        {
+            case 0:
+                testoTutorial.text = spiegazioni_ITA[indice];
+                break;
+
+            case 1:
+            default:
+                testoTutorial.text = spiegazioni_ENG[indice];
+                break;
+        }
+        
         indiceTutorial.text = (indice + 1).ToString();  //Il numero della "slide"
+        
         print(indice);
     }
 
     public void AvantiSlideTutorial()
     {
-        if (indice >= spiegazioni.Length-1 || indice >= immagini.Length-1)
+        bool oltreSpiegaz; 
+
+        switch (OpzioniMainScript.linguaScelta)
+        {
+            case 0:
+                oltreSpiegaz = indice >= spiegazioni_ITA.Length-1;
+                break;
+
+            case 1:
+            default:
+                oltreSpiegaz = indice >= spiegazioni_ENG.Length-1;
+                break;
+        }
+
+        if (oltreSpiegaz /*|| indice >= immagini.Length*/)
             //Se supera la lunghezza massima, torna a 0
             indice = 0;
         else
@@ -44,7 +71,17 @@ public class CambiaTutorial : MonoBehaviour
     {
         if (indice <= 0)
             //Se supera la lunghezza minima, torna al massimo
-            indice = spiegazioni.Length - 1;
+            switch (OpzioniMainScript.linguaScelta)
+            {
+                case 0:
+                    indice = spiegazioni_ITA.Length - 1;
+                    break;
+
+                case 1:
+                default:
+                    indice = spiegazioni_ENG.Length - 1;
+                    break;
+            }
         else
             //Diminuisce la "slide" di 1
             indice--;

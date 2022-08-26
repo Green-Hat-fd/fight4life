@@ -7,6 +7,8 @@ TagManager:
   - Food
   - Water
   - Medicine
+  - CambioScena-Anim
+  - CambioScena-Obj
   layers:
   - Default
   - TransparentFX

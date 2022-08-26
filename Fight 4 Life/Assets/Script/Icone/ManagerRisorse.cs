@@ -8,12 +8,20 @@ public class ManagerRisorse : MonoBehaviour
 {
     //Totale delle risorse
     [SerializeField]
-    int cibo, acqua, medicine, energia;
+    int cibo, acqua, medicine, energia, pezziRadio;
+    [SerializeField, Range(0, 3), Space(10)]
+    int tipoArma;
+
+    //Variabile che indica se un'arma è stata trovata
+    [SerializeField]
+    bool haUnArma, radioTrovata;
 
     //Testi da cambiare (counter delle risorse)
     [SerializeField]
     GameObject gruppoRisorse;
     TMP_Text[] counterRisorse = new TMP_Text[4];
+    [SerializeField]
+    TMP_Text counterPezziRadio;
 
 
     private void Awake()
@@ -29,6 +37,13 @@ public class ManagerRisorse : MonoBehaviour
     {
         LimitaRisorse();
         CambiaCounterUi();
+
+        //Mette a 0 se non abbiamo trovato nessun'arma
+        if (!haUnArma)
+            tipoArma = 0;
+
+        if (radioTrovata)
+            ;//FA LE SUE COSE
     }
 
     #region Funzioni cambio num risorse
@@ -89,6 +104,20 @@ public class ManagerRisorse : MonoBehaviour
             energia += daAgg;
     }
 
+    /// <summary>
+    /// Toglie 1 dai pezzi della Radio
+    /// </summary>
+    public void    TogliPezziRadio()
+    {
+        if(pezziRadio > 0)
+            pezziRadio--;
+    }
+    public void AggiungiPezziRadio(int daAgg)
+    {
+        if(pezziRadio <= 99)
+            pezziRadio += daAgg;
+    }
+
     #endregion
 
     #region Funzioni Get personalizzate
@@ -113,6 +142,60 @@ public class ManagerRisorse : MonoBehaviour
         return energia;
     }
 
+    public bool LeggiHaUnArma()
+    {
+        return haUnArma;
+    }
+
+    public int LeggiTipoArma()
+    {
+        return tipoArma;
+    }
+
+    public int LeggiPezziRadio()
+    {
+        return pezziRadio;
+    }
+
+    #endregion
+
+    #region Funzioni Set personalizzate
+
+    public void ScriviCibo(int c)
+    {
+        cibo = c;
+    }
+
+    public void ScriviAcqua(int a)
+    {
+        acqua = a;
+    }
+
+    public void ScriviMedicine(int m)
+    {
+        medicine = m;
+    }
+
+    public void ScriviEnergia(int e)
+    {
+        energia = e;
+    }
+
+    public void ScriviHaUnArma(bool tf)
+    {
+        haUnArma = tf;
+    }
+
+    public void ScriviTipoArma(int tA)
+    {
+        tipoArma = tA;
+    }
+
+    public void ScriviPezziRadio(int pR)
+    {
+        pezziRadio = pR;
+    }
+
     #endregion
 
     #region Limita le risorse & cambia counter risorse
@@ -123,6 +206,7 @@ public class ManagerRisorse : MonoBehaviour
         acqua = Mathf.Clamp(acqua, 0, 99);
         medicine = Mathf.Clamp(medicine, 0, 99);
         energia = Mathf.Clamp(energia, 0, 99);
+        pezziRadio = Mathf.Clamp(pezziRadio, 0, 99);
     }
 
     void CambiaCounterUi()
@@ -131,6 +215,7 @@ public class ManagerRisorse : MonoBehaviour
         counterRisorse[1].text = acqua.ToString(); //dell'acqua
         counterRisorse[2].text = medicine.ToString(); //delle medicine
         counterRisorse[3].text = energia.ToString(); //dell'energia
+        counterPezziRadio.text = pezziRadio.ToString(); //dei pezzi della radio
     }
 
     #endregion
