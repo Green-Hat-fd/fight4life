@@ -17,6 +17,8 @@ public class CambiaTutorial : MonoBehaviour
     [SerializeField]
     TMP_Text testoTutorial,
              indiceTutorial;
+    [SerializeField]
+    GameObject bottonePrima;
 
     int indice;
 

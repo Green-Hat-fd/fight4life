@@ -132,6 +132,34 @@ public class CharacterStats : MonoBehaviour
         stanchezza = s;
     }
 
+    public void TogliAllaVita(float v_toSubt)
+    {
+        vita -= v_toSubt;
+        
+        vita = Mathf.Clamp(vita, 0f, MAX_vita);
+    }
+
+    public void AggiungiAllaFame(float f_toAdd)
+    {
+        fame += f_toAdd;
+        
+        fame = Mathf.Clamp(fame, 0f, MAX_fame);
+    }
+
+    public void AggiungiAllaSete(float s_toAdd)
+    {
+        sete += s_toAdd;
+        
+        sete = Mathf.Clamp(sete, 0f, MAX_sete);
+    }
+
+    public void AggiungiAllaStanch(float s_toAdd)
+    {
+        stanchezza += s_toAdd;
+
+        stanchezza = Mathf.Clamp(stanchezza, 0f, MAX_stam);
+    }
+
     #endregion
 
     #region Funzioni Get personalizzate

@@ -9,6 +9,8 @@ TagManager:
   - Medicine
   - CambioScena-Anim
   - CambioScena-Obj
+  - Nuova-Partita
+  - Elenco-dei-Personaggi
   layers:
   - Default
   - TransparentFX

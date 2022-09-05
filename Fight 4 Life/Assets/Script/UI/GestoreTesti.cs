@@ -269,4 +269,9 @@ public class GestoreTesti : MonoBehaviour
     {
         persInEsploraz = statsPersonScript;
     }
+
+    public CharacterStats LeggiPersonaggio()
+    {
+        return persInEsploraz;
+    }
 }

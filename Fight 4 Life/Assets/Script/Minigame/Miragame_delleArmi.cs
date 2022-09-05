@@ -206,7 +206,7 @@ public class Miragame_delleArmi : MonoBehaviour
 
     void ScriviAperturaMinigioco(bool vf)
     {
-        aperto = vf; 
+        aperto = vf;
     }
 
     #endregion

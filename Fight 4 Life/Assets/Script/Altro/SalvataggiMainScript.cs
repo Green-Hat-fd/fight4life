@@ -40,6 +40,8 @@ public class SalvataggiMainScript : MonoBehaviour
 
     private void Awake()
     {
+        gruppoPerson = GameObject.FindGameObjectWithTag("Elenco-dei-Personaggi");
+
         if (personStatsScript.Length != 4)
             personStatsScript = new CharacterStats[4];
 
@@ -50,6 +52,20 @@ public class SalvataggiMainScript : MonoBehaviour
         }
 
 
+        #region Rileva se c'è l'oggetto per creare una nuova partita
+
+        GameObject segnalaNuovaPart = GameObject.FindGameObjectWithTag("Nuova-Partita");
+
+        //Se trova l'oggetto "segnalatore", crea una nuova partita e distrugge l'oggetto
+        if (segnalaNuovaPart != null)
+        {
+            GeneraNuovaPartita();
+
+            Destroy(segnalaNuovaPart);
+        }
+        #endregion
+
+
         //Prende la posizione del file
         percorso_file = Application.dataPath + "/salvFile.txt";
 
@@ -57,6 +73,15 @@ public class SalvataggiMainScript : MonoBehaviour
         risorseScript = FindObjectOfType<ManagerRisorse>();
         stazScript = FindObjectOfType<StazioniMainScript>();
     }
+
+    #region Funzioni Get personalizzate
+
+    public CharacterStats[] LeggiPersonStatsScript()
+    {
+        return personStatsScript;
+    }
+
+    #endregion
 
     public void SalvaPartita()
     {

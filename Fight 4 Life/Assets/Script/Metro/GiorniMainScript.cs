@@ -17,6 +17,15 @@ public class GiorniMainScript : MonoBehaviour
     ManagerRisorse managRis;
     StazioniMainScript stazScript;
     SalvataggiMainScript salvScript;
+    GestoreTesti txtsScript;
+
+    [Header("Curva/e per le stats"), Space(2.5f)]
+    [Tooltip("Questa curva verrà usata 2 volte, \nper Fame & Sete, con i valori che verranno \nsommati e aggiunti alla Stanchezza")]
+    [SerializeField]
+    AnimationCurve curvaAumentoStanch;
+    [Tooltip("Stessa cosa di quella sopra, \nma questa volta verrà usata \nsolo una volta (per diminuire la Vita)")]
+    [SerializeField]
+    AnimationCurve curvaDiminuizVita;
 
     int numGiorni = 0;
 
@@ -30,6 +39,7 @@ public class GiorniMainScript : MonoBehaviour
         managRis = FindObjectOfType<ManagerRisorse>();
         stazScript = FindObjectOfType<StazioniMainScript>();
         salvScript = FindObjectOfType<SalvataggiMainScript>();
+        txtsScript = FindObjectOfType<GestoreTesti>();
     }
 
     void Update()
@@ -70,8 +80,50 @@ public class GiorniMainScript : MonoBehaviour
 
     public void NuovoGiorno_inMetro()
     {
+        //Aggiorna le stats di tutti (semi-)randomicamente
+        foreach(CharacterStats chSt in salvScript.LeggiPersonStatsScript())
+        {
+             float ch_fame = chSt.LeggiFame(),
+                   ch_sete = chSt.LeggiSete(),
+                   ch_stanch = chSt.LeggiStanch();
+
+            float daAgg_fame = Random.Range(10f, 20f),
+                  daAgg_sete = Random.Range(15f, 25f),
+                  daAgg_stanch = new float(),
+                  daTogl_vita;
+
+            //Aggiunge valori random alla Fame & Sete
+            chSt.AggiungiAllaFame(daAgg_fame);
+            chSt.AggiungiAllaSete(daAgg_sete);
+
+            #region Stanchezza
+            
+            //Determina quale valore deve aggiungere alla Stanchezza
+            //rispetto ai valori di Fame & Sete
+            daAgg_stanch += curvaAumentoStanch.Evaluate(ch_fame);  //--Ritorna il valore "value" della curva dandogli ch_fame come il "time"--//
+            daAgg_stanch += curvaAumentoStanch.Evaluate(ch_sete);
+
+            chSt.AggiungiAllaStanch(daAgg_stanch); //E l'aggiunge
+
+            #endregion
+
+            #region Vita
+
+            float max_daTogl = curvaDiminuizVita.Evaluate(ch_stanch);
+
+            //Prende a caso un valore da togliere alla Vita
+            //con al max il valore della Stanchezza
+            daTogl_vita = Random.Range(0f, max_daTogl);
+
+            chSt.TogliAllaVita(daTogl_vita); //E la toglie
+
+            #endregion
+        }
+
+        #region NON serve perché la salva nella timeline (vedi il ev.Invoke() qua dopo)
         //Salva la giornata
-        salvScript.SalvaPartita();
+        //salvScript.SalvaPartita();
+        #endregion
 
         ev_NuovoGiorno_inMetro.Invoke();
     }
@@ -240,6 +292,9 @@ public class GiorniMainScript : MonoBehaviour
 
     public void FineNotte_Fuori()
     {
+        //Aggiorna al max la stanchezza del personaggio in esplorazione
+        txtsScript.LeggiPersonaggio().ScriviStanch(100f);
+
         //Salva la giornata
         salvScript.SalvaPartita();
         
