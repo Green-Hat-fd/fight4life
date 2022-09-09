@@ -8,6 +8,7 @@ public class Miragame_delleArmi : MonoBehaviour
 {
     [SerializeField]
     ManagerRisorse risorseScript;
+    GestoreTesti testiScript;
 
     [SerializeField, Tooltip("Se non metti lo slider, lo prende da sé stesso \noppure lo prende dai figli")]
     Slider sliderMG;
@@ -33,7 +34,8 @@ public class Miragame_delleArmi : MonoBehaviour
     Vector2 range_rallentaFuc;      [-0.15, 0.15]
     */
 
-    bool siMuove, aperto;
+    bool siMuove,
+         aperto = false;
 
     [Header("\"Animazione\" della barretta")]
     [SerializeField]
@@ -43,12 +45,21 @@ public class Miragame_delleArmi : MonoBehaviour
     [SerializeField]
     AudioSource musEsplCalma, musEsplNervosa;
 
+    [Header("Risultato del minigame")]
+    [SerializeField]
+    AnimationCurve curvaRisultatoMinigame;
+
+    public static float percentualeUscita;
+
 
     private void Start()
     {
         //Se non trova il component Slider, allora prendi quello dei figli,
         //altrimenti (lo ha trovato) mette il suo
         sliderMG = GetComponent<Slider>() != null ? GetComponent<Slider>() : GetComponentInChildren<Slider>();
+        
+        risorseScript = FindObjectOfType<ManagerRisorse>();
+        testiScript = FindObjectOfType<GestoreTesti>();
         
         if (risorseScript == null)
             risorseScript = FindObjectOfType<ManagerRisorse>();
@@ -113,11 +124,10 @@ public class Miragame_delleArmi : MonoBehaviour
             cambioMus = 0;
 
             //Ritorna il valore dove si è fermato lo slider
-            print(Mathf.Abs(sliderMG.value)); /*DEBUG*/
-
+            percentualeUscita = curvaRisultatoMinigame.Evaluate(Mathf.Abs(sliderMG.value));
 
             //Appena finisce l'animazione, chiude il minigame
-
+            StartCoroutine(FineMinigame());
         }
         #endregion
 
@@ -201,10 +211,20 @@ public class Miragame_delleArmi : MonoBehaviour
     }
     #endregion
 
+    IEnumerator FineMinigame()
+    {
+        yield return new WaitForSeconds(2.5f);
+
+        //Chiude il minigame
+        aperto = false;
+
+        //Va avanti nel testo
+
+    }
 
     #region Funzioni Set personalizzate
 
-    void ScriviAperturaMinigioco(bool vf)
+    public void ScriviAperturaMinigioco(bool vf)
     {
         aperto = vf;
     }

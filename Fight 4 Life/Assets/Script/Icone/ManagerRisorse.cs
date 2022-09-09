@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using TMPro;
 using System;
 
@@ -23,13 +24,9 @@ public class ManagerRisorse : MonoBehaviour
     [SerializeField]
     TMP_Text counterPezziRadio;
 
-    CreaOggetti creaObjScript;
-
 
     private void Awake()
     {
-        creaObjScript = FindObjectOfType<CreaOggetti>();
-
         for (int i = 0; i < 4; i++)
         {
             //Prende tutti i figli del gruppo del counter e li assegna alla variabile
@@ -42,12 +39,11 @@ public class ManagerRisorse : MonoBehaviour
         LimitaRisorse();
         CambiaCounterUi();
 
-        //Mette a 0 se non abbiamo trovato nessun'arma
-        if (!haUnArma)
-            tipoArma = 0;
+        //Mette falsa se NON abbiamo trovato nessun'arma
+        haUnArma = tipoArma > 0;
 
-        if (pezziRadio >= 5)
-            creaObjScript.CreaOggettoSegnalatoreGoodEnd();//FA LE SUE COSE
+        //Mette vera se ha trovato 5 (o più) pezzi della radio
+        radioTrovata = pezziRadio >= 5;
     }
 
     #region Funzioni cambio num risorse
@@ -159,6 +155,11 @@ public class ManagerRisorse : MonoBehaviour
     public int LeggiPezziRadio()
     {
         return pezziRadio;
+    }
+
+    public bool LeggiRadioTrovata()
+    {
+        return radioTrovata;
     }
 
     #endregion

@@ -24,6 +24,9 @@ public class SalvataggiMainScript : MonoBehaviour
 
     [SerializeField]
     AudioSource sfxSalvaPartita, sfxCaricaPartita;
+    
+    [SerializeField]
+    GameObject pausaTestoSalvato;
 
     /* #region Variabili aggiuntive per essere scritte
      * [Header("––Variabili aggiuntive per caricare il salvat.––")]
@@ -52,6 +55,29 @@ public class SalvataggiMainScript : MonoBehaviour
         }
 
 
+
+
+        //Prende la posizione del file
+        percorso_file = Application.dataPath + "/salvFile.txt";
+
+        //Da mettere le variabili che vengono messe all'inizio (come la var delle OpzioniMainScript)
+        risorseScript = FindObjectOfType<ManagerRisorse>();
+        stazScript = FindObjectOfType<StazioniMainScript>();
+    }
+
+    private void Update()
+    {
+        #region NON_USATO_Rileva se la scena è stata cambiata
+
+        //GameObject cambioSc = GameObject.FindGameObjectWithTag("Cambio-scena");
+        //if (cambioSc != null)
+        //{
+        //    Awake();
+
+        //    Destroy(cambioSc);
+        //}
+        #endregion
+
         #region Rileva se c'è l'oggetto per creare una nuova partita
 
         GameObject segnalaNuovaPart = GameObject.FindGameObjectWithTag("Nuova-Partita");
@@ -65,13 +91,18 @@ public class SalvataggiMainScript : MonoBehaviour
         }
         #endregion
 
+        #region Rileva se c'è l'oggetto per caricare (load) la partita
 
-        //Prende la posizione del file
-        percorso_file = Application.dataPath + "/salvFile.txt";
+        GameObject segnalaCaricaPart = GameObject.FindGameObjectWithTag("Carica-Salvataggio");
 
-        //Da mettere le variabili che vengono messe all'inizio (come la var delle OpzioniMainScript)
-        risorseScript = FindObjectOfType<ManagerRisorse>();
-        stazScript = FindObjectOfType<StazioniMainScript>();
+        //Se trova l'oggetto "segnalatore", crea una nuova partita e distrugge l'oggetto
+        if (segnalaCaricaPart != null)
+        {
+            CaricaSalvataggio();
+
+            Destroy(segnalaCaricaPart);
+        }
+        #endregion
     }
 
     #region Funzioni Get personalizzate
@@ -141,6 +172,11 @@ public class SalvataggiMainScript : MonoBehaviour
 
         sfxSalvaPartita.PlayDelayed(.5f);
 
+        //Avvia l'animazione di pausa (se c'è il testo piccolo)
+        if (pausaTestoSalvato != null)
+            pausaTestoSalvato.GetComponent<Animator>().Play("AnimazioneTestoSalvat");
+
+
         //fine = finale; //OLD_DEBUG
 
         #region Prodotto finale
@@ -189,7 +225,7 @@ public class SalvataggiMainScript : MonoBehaviour
         #endregion
     }
 
-    public void LeggiECaricaSalvataggio()
+    public void CaricaSalvataggio()
     {
         string[] letturaDelFile = new string[0];
         
@@ -292,6 +328,9 @@ public class SalvataggiMainScript : MonoBehaviour
         int[] zoneStazioni = new int[stazScript.LeggiMaxStazioni()];
 
 
+        //Cancella il file di salvataggio
+        CancellaFileSalvataggio();
+
         //Genera nuove risorse
         risorseScript.ScriviCibo(Random.Range(5, 10));
         risorseScript.ScriviAcqua(Random.Range(5, 10));
@@ -333,5 +372,15 @@ public class SalvataggiMainScript : MonoBehaviour
             personStatsScript[i].ScriviSete(Random.Range(0f, 7.5f));
             personStatsScript[i].ScriviStanch(Random.Range(0f, 7.5f));
         }
+
+        //Salva in un nuovo file
+        SalvaPartita();
+    }
+
+    public void CancellaFileSalvataggio()
+    {
+        //Se già esiste, lo elimina
+        if (File.Exists(percorso_file))
+            File.Delete(percorso_file);
     }
 }

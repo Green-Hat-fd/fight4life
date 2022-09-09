@@ -23,6 +23,11 @@ public class CambiaTutorial : MonoBehaviour
     int indice;
 
 
+    private void Awake()
+    {
+        bottonePrima.SetActive(false);
+    }
+
     void Update()
     {
         //Cambia ogni Update() la "slide" del tutorial
@@ -41,8 +46,8 @@ public class CambiaTutorial : MonoBehaviour
         }
         
         indiceTutorial.text = (indice + 1).ToString();  //Il numero della "slide"
-        
-        print(indice);
+
+        //print(indice);  //--DEBUG--//
     }
 
     public void AvantiSlideTutorial()
@@ -62,8 +67,11 @@ public class CambiaTutorial : MonoBehaviour
         }
 
         if (oltreSpiegaz /*|| indice >= immagini.Length*/)
+        {
             //Se supera la lunghezza massima, torna a 0
             indice = 0;
+            bottonePrima.SetActive(true);
+        }
         else
             //Aumenta la "slide" di 1
             indice++;

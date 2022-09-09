@@ -1,0 +1,58 @@
+# TESTO IN METRO #
+L'atmosfera dentro la metro e' piuttosto cupa oggi, ma dobbiamo mantenerci forti se vogliamo sopravvivere e lasciarci questo posto alle spalle, il piu' presto possibile. 
+Quando usciremo da questo posto, dovremmo festeggiare in quel famosissimo locale di cui parlava Niko... ma siamo sicuri che esista?
+Sarebbe una bella idea decorare questo posto e renderlo un po' piu' ospitabile, alla fine sara' la nostra casa per un po' di tempo.
+Chissa' com'e' la situazione in altre parti del mondo, magari la' fuori ci sono altri sopravvissuti come noi.
+Vanessa parlava sempre di come sarebbe stato carino avere un animale domestico a farci compagnia, che sia gia' troppo tardi per averne uno?
+Ormai qui beviamo solo acqua, e' un peccato che non possiamo prendere altro, una bella bottiglia di limonata fresca ci migliorerebbe il morale.
+Oggi c'e' molto silenzio e nessuno ha intenzione di intraprendere una conversazione, e' quasi peggio di quella giornata in cui Niko chiese a Marshall di partecipare ad uno dei suoi video quando saremo fuori da qui.
+Se avessimo gli ingredienti giusti sarebbe carino ricreare uno dei famosissimi piatti di Gino.
+
+
+# CIBO #
+Dietro questo cassetto sembra esserci qualcosa di interessante. [/p] ha deciso di controllare e sembra proprio che qualcuno abbia dimenticato di portarsi dietro il suo <b>Cibo</b>!<br><br>(Hai trovato [/x] cibo)
+Sembra che qualcuno abbia lasciato qui delle scatolette di <b>Cibo</b> ancora non aperte! Sicuramente chiunque le abbia abbandonate non ne sentira' la mancanza.<br><br>(Hai raccolto [/x] cibo)
+
+
+# ACQUA #
+Con questo caldo, trovare qualcosa da bere e' piuttosto difficile... Probabilmente quel cadavere laggiu' con addosso vestiti catarifrangenti sembra avere qualche bottiglia d'<b>Acqua</b> con sé! Eppure ha il corpo tutto sciolto... chissa' cosa gli sara' mai successo...<br><br>(Hai preso [/x] acqua)
+Oggi sembra essere il giorno fortunato di [/p]! Un altro gruppo di sopravvissuti ha deciso di regalare a [/p] dell'<b>Acqua</b> che hanno appena trovato. Purtroppo non hanno specificato da dove proviene...<br><br>(Hai guadagnato [/x] acqua)
+
+
+# MEDICINE #
+Quello sembra essere un medikit intatto e pieno di <b>Medicine</b>! Incredibile averne trovato uno, ora bisogna sperare che non siano scadute.<br><br>(Hai preso [/x] medicine)
+Sotto questo tappeto c'e' un qualcosa! Controllando, [/p] sembra aver trovato delle <b>Medicine</b>! Il genio che ha pensato di nasconderle in un posto del genere dovra' fare di meglio la prossima volta.<br><br>(Hai raccolto [/x] medicine)
+
+
+# ENERGIA #
+Mentre [/p] stava camminando, inciampa su qualcosa... Controllando meglio, sono delle <b>Batterie</b>!<br><br>(Hai recuperato [/x] batterie)
+Di lato ad un muro ridotto a pezzi, [/p] vede un barbone che sta per morire. Ha in mano delle <b>Batterie</b>, e sembra che le voglia offrire a [/p].<br><br>(Hai ottenuto [/x] batterie)
+
+
+# PEZZO DELLA RADIO #
+Questo strano pezzo di metallo ricorda a [/p] qualcosa, potrebbe mai essere un pezzo della <b>Radio</b> che serve al gruppo?<br><br>(Hai trovato un pezzo della radio)
+Chi l'avrebbe detto che in un posto del genere sarebbe stato possibile trovare un pezzo di una <b>Radio</b>. Da quando e' iniziata l'apocalisse le sorprese non mancano mai.<br><br>(Hai preso un pezzo della radio)
+Un povero ubriacone regala a [/p] uno strano pezzo di metallo che ha trovato per strada e dice che a lui non serve. Analizzandolo meglio, sembra proprio essere un pezzo per costruire la <b>Radio</b>! Meglio a [/p] che a quel brillo.<br><br>(Hai guadagnato un pezzo della radio)
+Sopra questo tavolo c'e' una <b>Radio</b>! [/p] prova ad accenderla ma non sembra succedere nulla... Ma chissa', magari qualche pezzo potrebbe funzionare.<br><br>(Hai raccolto un pezzo della radio)
+
+
+# COLTELLO TROVATO #
+Da queste parti c'e' stato forse un combattimento in quanto [/p] ha trovato un <b>Coltello</b> insanguinato. Non sembra esserci nessuno da queste parti che ha intenzione di riprendersi quest'arma... meglio così.<br><br>(Hai trovato il Coltello)
+Qualcuno ha provato a forzare una serratura da queste parti con un <b>Coltello</b>, ma a [/p] basta, dato che ha trovato una nuova arma con cui difendersi.<br><br>(Hai raccolto il Coltello)
+
+
+# PISTOLA TROVATA #
+Qui dietro sembra esserci il cadavere di un poliziotto... Tuttavia quest'ultimo ha con sé una bella <b>Pistola</b> carica! Adesso e' di [/p].<br><br>(Hai trovato la Pistola)
+C'e' stata da poco una sparatoria qui e qualcosa ha fatto fuggire due criminali, meglio raccogliere subito questa <b>Pistola</b> con qualche pallottola lì vicino e andarsene via. <br><br>(Hai raccolto la Pistola)
+
+
+# FUCILE TROVATO #
+[/p] non sapeva che questa fosse un'area frequentata dai militari, pero' di loro nessuna traccia. La buona notizia e' che [/p] ha trovato un <b>Fucile</b> carico rovistando in giro.<br><br>(Hai trovato il Fucile)
+Oggi non e' il compleanno di [/p] ma sembra aver trovato un bel regalo! Si tratta di un <b>Fucile</b>! Probabilmente chi lo possedeva e' morto, ma sarebbe un peccato lasciarlo inutilizzato...<br><br>(Hai trovato il Fucile)
+
+
+# MORTE DEI PERSONAGGI #
+Conoscere [/p] e' stato un onore, ma purtroppo non c'e' l'ha fatta.
+Il tempo di [/p] e' scaduto, che la sua anima possa riposare in pace.
+Abbiamo fatto tutto il possibile per [/p] ma non e' stato abbastanza.
+[/p] ha combattuto valorosamente, ci dispiace che se ne sia andato via così presto.

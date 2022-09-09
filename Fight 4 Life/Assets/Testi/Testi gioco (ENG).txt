@@ -1,0 +1,58 @@
+# TESTO IN METRO #
+The atmosphere of the subway is very gloomy today, but we have to stay strong if we want to survive and leave this place as soon as possible.
+If we will get out of here alive, we should celebrate in that famous place that Niko always told us about... but are we sure it exists?
+It would be a nice idea to decorate this place and make it look more hospitable, after all it's gonna be our home for a while.
+We wonder how the situation is in other parts of the world, perhaps there are some other survivors just like us.
+Vanessa always told us how it would be nice to have a pet here, is it too late for that?
+At this point we are only drinking water here, it's a shame that we can't take anything else... something like a nice and fresh lemonade would improve our mood.
+Today everyone is incredibly silent and nobody wants to start a conversation, it's almost worse than that day when Niko told Marshall if he wanted to join him in one of his videos once we get out of here.
+It would be so nice to recreate one of Gino's recipes, if only we had the right ingredients.
+
+
+# CIBO #
+Behind this drawer there might be something <b>interesting</b>. [/p] decided to check and it looks like someone left his back <b>Food</b> here!<br><br>(You found [/x] food)
+It seems that someone left some unopened <b>Food</b> cans here! Surely whoever forgot it here won't miss them.<br><br>(You picked up [/x] food)
+
+
+# ACQUA #
+With this heat, trying to find something to drink is rather difficult... Perhaps that corpse over there with some cat's eyes clothes seems to have some <b>Water</b> bottles with it! And yet the body is all melted... Who knows what ever happened to them...<br><br>(You took [/x] water)
+Today might be [/p]'s lucky day! Another handful of survivors decided to give [/p] some <b>Water</b> that they've found. However they didn't define where it's from...<br><br>(You got [/x] water)
+
+
+# MEDICINE #
+[/p] trips on something while walking... By looking into it, it's some <b>Batteries</b>!<br><br>(You fetched [/x] batteries)
+Alongside a wall torn down, [/p] sees a clochard near death. He has some <b>Batteries</b> in his hand, and it looks as if he wants to offer them to [/p].<br><br>(You obtained [/x] batteries)
+
+
+# ENERGIA #
+That seems to be an untouched medikit full of <b>Medicines</b>! It's unbelievable how [/p] managed to find one, hopefully they are all not expired.<br><br>(You took [/x] medicines)
+There's something beneath this carpet! By taking a better look, [/p] has found some <b>Medicines</b>! The genius who thought hiding them in such a place was a good idea will try harder next time.<br><br>(You picked up [/x] medicines)
+
+
+# PEZZO DELLA RADIO #
+This strange metallic piece reminds [/p] of something, could it be a part of the <b>Radio</b> that will be useful to the team?<br><br>(You found a piece of the radio)
+Who would have thought that in a place like this, it would've been possible to find a part of a <b>Radio</b>. Since when the apocalypse started, surprises never end<br><br>(You took a piece of the radio)
+A poor boozer gives a strange piece of metal to [/p] which he found on his way and he says that he doesn't need it. By taking a closer look, it looks like a part for crafting the <b>Radio</b>! It's better for [/p] than that buzzed man.<br><br>(You got a piece of the radio)
+On this table there's a <b>Radio</b>! [/p] tries to turn it on but it doesn't seem to be working... But wonders, probably some parts may be working.<br><br>(You picked up a piece of the radio)
+
+
+# COLTELLO TROVATO #
+There may have been an underground fighting around here, since [/p] found a bloody <b>Knife</b>. Doesn't seem to be anybody around here with the intent of taking this weapon back... all the better.<br><br>(You found the Knife)
+Someone tried to pick this lock with a <b>Knife</b>, although it's enough for [/p], who seems to have found a new weapon to defend themself.<br><br>(You picked up the Knife)
+
+
+# PISTOLA TROVATA #
+There is a corpse of a policeman over here... Nevertheless he has a well loaded <b>Gun</b>! Now it's [/p]'s property.<br><br>(You found the Gun)
+There was a gunfight between two gangsters earlier and now they're gone, it's better to pick up this <b>Gun</b> loaded with some bullets and walk away.<br><br>(You picked up the Gun)
+
+
+# FUCILE TROVATO #
+[/p] didn't know that this was a military zone, yet there's no sign of them. The good thing is that [/p] has found a loaded <b>Shotgun</b> rummaging around.<br><br>(You found the Shotgun)
+Today might not be [/p]'s birthday, but they've received a nice gift! And it's a nice <b>Shotgun</b> too! Alas the person who had it is now dead, but it would be a shame to leave it here untouched...<br><br>(You found the Shotgun)
+
+
+# MORTE DEI PERSONAGGI #
+It was an honor to meet [/p], yet they didn’t make it.
+[/p]’s time is over, may their soul rest in peace.
+We did our best for [/p], but it wasn’t enough.
+[/p] fought bravely, it’s a shame that they are gone so early.

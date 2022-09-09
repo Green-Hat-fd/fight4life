@@ -9,7 +9,7 @@ public class Singleton : MonoBehaviour
     private void Awake()
     {
         //Se c'è un clone di questo script (nella scena), distruggimi
-        if (istanza != null && istanza != this)
+        if (istanza != null && istanza != this) /* && gameObject.scene.buildIndex != 1*/
         {
             Destroy(gameObject);
         }

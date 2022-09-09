@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: 82f152ef3b99ead4194b60ff1417effb
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - Noir Lullaby
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2b77d49a5019d32419eee97525cc9f2d, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

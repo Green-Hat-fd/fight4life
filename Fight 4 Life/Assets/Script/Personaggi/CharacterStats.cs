@@ -89,7 +89,7 @@ public class CharacterStats : MonoBehaviour
 
         //Rende o meno trasparente il personaggio se è in esplorazione
         sprPers.color = inEsplorazione ? new Color(.75f, .75f, .75f, .4f) : Color.white;
-        ombraObj.SetActive(inEsplorazione || sonoMorto ? false : true);
+        ombraObj.SetActive(!inEsplorazione && !sonoMorto);
 
         //Toglie il personaggio se è morto
         sprPers.gameObject.SetActive(sonoMorto ? false : true);

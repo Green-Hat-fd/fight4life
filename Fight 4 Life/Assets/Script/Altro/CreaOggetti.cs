@@ -20,7 +20,14 @@ public class CreaOggetti : MonoBehaviour
 
         obj_np.tag = "Nuova-Partita";
     }
+    public void CreaOggettoSegnalatoreCP()
+    {
+        GameObject obj_cp = new GameObject(">--Carica Salvataggio--<");
 
+        DontDestroyOnLoad(obj_cp);
+
+        obj_cp.tag = "Carica-Salvataggio";
+    }
 
     public void CreaOggettoSegnalatoreGoodEnd()
     {
@@ -28,9 +35,8 @@ public class CreaOggetti : MonoBehaviour
 
         DontDestroyOnLoad(obj_fb);
 
-        obj_fb.tag = "Nuova-Partita";
+        obj_fb.tag = "Good-Ending";
     }
-
 
     public void CreaOggettoSegnalatoreBadEnd()
     {
@@ -38,6 +44,15 @@ public class CreaOggetti : MonoBehaviour
 
         DontDestroyOnLoad(obj_fc);
 
-        obj_fc.tag = "Nuova-Partita";
+        obj_fc.tag = "Bad-Ending";
+    }
+
+    public void CreaOggettoSegnalatoreCambioScena()
+    {
+        GameObject obj_cs = new GameObject(">--Si cambia la scena--<");
+
+        DontDestroyOnLoad(obj_cs);
+
+        obj_cs.tag = "Cambio-scena";
     }
 }

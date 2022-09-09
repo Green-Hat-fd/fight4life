@@ -10,7 +10,13 @@ TagManager:
   - CambioScena-Anim
   - CambioScena-Obj
   - Nuova-Partita
+  - Good-Ending
+  - Bad-Ending
   - Elenco-dei-Personaggi
+  - Casella-di-testo
+  - Freccia-manda-avanti-testo
+  - Cambio-scena
+  - Carica-Salvataggio
   layers:
   - Default
   - TransparentFX
