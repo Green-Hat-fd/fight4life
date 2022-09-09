@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.Events;
 using TMPro;
 
@@ -18,16 +19,7 @@ public class GiorniMainScript : MonoBehaviour
     StazioniMainScript stazScript;
     SalvataggiMainScript salvScript;
     GestoreTesti txtsScript;
-
-    [Header("Esplorazione"), Space(2.5f)]
-    [SerializeField]
-    GameObject canvasMetro;
-    [SerializeField]
-    GameObject canvasEsplora, gruppoAudioMetro, gruppoAudioEsplora;
-    [SerializeField]
-    AudioSource musDentroMetro, musEsplora;
-        
-    bool siVaAdEsplorare = new bool();
+    CrossFadeMetroEsplora crossFadeMEScript;
 
 
     [Header("Curva/e per le stats"), Space(2.5f)]
@@ -51,15 +43,14 @@ public class GiorniMainScript : MonoBehaviour
         stazScript = FindObjectOfType<StazioniMainScript>();
         salvScript = FindObjectOfType<SalvataggiMainScript>();
         txtsScript = FindObjectOfType<GestoreTesti>();
+        crossFadeMEScript = FindObjectOfType<CrossFadeMetroEsplora>();
+
+        //Notifica al GestoreTesti che non è in esplorazione
+        txtsScript.ScriviSonoInEsplorazione(false);
     }
 
     void Update()
     {
-        int cambioMus = new int();
-
-        CanvasGroup cG_cMetro = canvasMetro.GetComponent<CanvasGroup>(),
-                    cG_cEsplora = canvasEsplora.GetComponentInChildren<CanvasGroup>(); 
-
         #region NON_USATO_Rileva se la scena è stata cambiata
 
         //GameObject cambioSc = GameObject.FindGameObjectWithTag("Cambio-scena");
@@ -71,63 +62,6 @@ public class GiorniMainScript : MonoBehaviour
         //}
         #endregion
 
-        if (siVaAdEsplorare)
-        {
-            //Cambia canvas in quella dell'esterno
-            canvasEsplora.SetActive(true);
-
-            cG_cMetro.alpha = Mathf.MoveTowards(cG_cMetro.alpha, 0f, 1.5f * Time.deltaTime);
-            cG_cEsplora.alpha = Mathf.MoveTowards(cG_cEsplora.alpha, 1f, 1.5f * Time.deltaTime);
-
-            if (cG_cEsplora.alpha <= 0f)
-                canvasMetro.SetActive(false);
-
-            //Cambia la musica
-            cambioMus = 0;
-        }
-        else
-        {
-            //Cambia canvas in quella della metro
-            canvasMetro.SetActive(true);
-
-            cG_cEsplora.alpha = Mathf.MoveTowards(cG_cEsplora.alpha, 0f, 1.5f * Time.deltaTime);
-            cG_cMetro.alpha = Mathf.MoveTowards(cG_cMetro.alpha, 1f, 1.5f * Time.deltaTime);
-
-            if (cG_cMetro.alpha <= 0f)
-                canvasMetro.SetActive(false);
-
-            //Cambia la musica
-            cambioMus = 1;
-        }
-
-
-        #region Crossfade della musica
-
-        switch (cambioMus)
-        {
-            //Musica metro --> esterno
-            case 0:
-                gruppoAudioEsplora.SetActive(true);
-
-                musDentroMetro.volume = Mathf.Lerp(musDentroMetro.volume, 0f, 1.5f * Time.deltaTime);
-                musEsplora.volume = Mathf.Lerp(musEsplora.volume, 1f, 1.5f * Time.deltaTime);
-
-                if (musDentroMetro.volume <= 0.01f)
-                    gruppoAudioMetro.SetActive(false);
-                break;
-
-            //Musica esterno --> metro
-            case 1:
-                gruppoAudioMetro.SetActive(true);
-
-                musEsplora.volume = Mathf.Lerp(musEsplora.volume, 0f, 1.5f * Time.deltaTime);
-                musDentroMetro.volume = Mathf.Lerp(musDentroMetro.volume, 0.75f, 1.5f * Time.deltaTime);
-
-                if (musEsplora.volume <= 0.01f)
-                    gruppoAudioEsplora.SetActive(false);
-                break;
-        }
-        #endregion
 
         //Aggiorna il testo che indica numero del giorno
         counterGiorniTXT.text = numGiorni.ToString();
@@ -217,6 +151,8 @@ public class GiorniMainScript : MonoBehaviour
 
     public void InizioNotte_Fuori()
     {
+        #region Variabili di percentuale
+
         //Variabili usate per la % uscita nella scelta
         //(che determineranno se l'evento viene aggiunto o meno)
         int percCibo, percAcqua, percMedicine, percEnergia,
@@ -229,6 +165,8 @@ public class GiorniMainScript : MonoBehaviour
             min_percAmici=0, min_percLotta=0, 
             min_percArmaC=0, min_percArmaP=0, min_percArmaF=0,
             min_percRadio;
+
+        #endregion
 
         #region Sceglie il minimo (del range della %) rispetto in quale zona si trova
 
@@ -295,7 +233,14 @@ public class GiorniMainScript : MonoBehaviour
                 break;
         }
 
-        min_percRadio = 5;
+        min_percRadio = 10;
+        
+        /* NOTA:
+         * Se si pensa che la percentuale minima
+         * di trovare la radio sia troppo alta, 
+         * l'idea originale era quella di metterla
+         * al 5%, e non al 10%
+         */
 
         #endregion
 
@@ -320,7 +265,7 @@ public class GiorniMainScript : MonoBehaviour
         }
         #endregion
 
-        #region Se esce la percentuale giusta, aggiunge "l'evento"
+        #region Aggiunge gli eventi e Mescola
         /* LEGENDA CODA/QUEUE:
          * 1 = Cibo
          * 2 = Acqua
@@ -329,22 +274,54 @@ public class GiorniMainScript : MonoBehaviour
          * 5 = Pezzo Radio
          * 9 = Lotta (inizio)
          * 901 = Lotta (combatti)
+         * 9010 = Lotta (avvia minigame)
          * 902 = Lotta (combatti-> vinci)
          * 903 = Lotta (combatti-> perdi)
          * 904 = Lotta (fuggi)
-         * 909 = Lotta (morte del person.)
+         * 909 = Lotta (morte del person.) [MAI USATA]
          * 0 = Amici
          * 91 = Coltello trovato
          * 92 = Pistola trovata
          * 93 = Fucile trovato
+         * 7 = Si torna alla metro
          */
 
+        //Se esce la percentuale giusta, aggiunge "l'evento"
         if (percCibo <= min_percCibo) codaEventi.Enqueue(1);
         if (percAcqua <= min_percAcqua) codaEventi.Enqueue(2);
         if (percMedicine <= min_percMedicine) codaEventi.Enqueue(3);
         if (percEnergia <= min_percEnergia) codaEventi.Enqueue(4);
         if (percRadio <= min_percRadio) codaEventi.Enqueue(5);
-        if (managRis.LeggiTipoArma() == 0)
+        if (managRis.LeggiHaUnArma())
+        {
+            int risultatoMaggiore = percAmici <= percLotta ? 0 : 9;
+
+            switch (risultatoMaggiore)
+            {
+                //Se la percentuale degli Amici è maggiore
+                case 0:
+                    if (percAmici <= min_percAmici)
+                    {
+                        //Mette una risorsa a caso tra tutte e 4
+                        int risACaso = Random.Range(1, 5);  //Tra 1 e 4
+                        codaEventi.Enqueue(risACaso);
+                    }
+                    break;
+
+                //Se la percentuale dei Nemici è maggiore
+                case 9:
+                    if (percLotta <= min_percLotta && percLotta >= percAmici)
+                        codaEventi.Enqueue(9);
+                    break;
+            }
+
+            #region OLD
+            //Se esce la percentuale di un amico & è maggiore della lotta
+
+            //Se esce la percentuale della lotta & è maggiore degli amici
+            #endregion
+        }
+        else
         {
             //Se incontra degli amici
             if (percAmici <= min_percAmici)
@@ -354,14 +331,14 @@ public class GiorniMainScript : MonoBehaviour
             }
 
 
-            #region Prende l'arma con la percentuale maggiore            
+            #region Prende l'arma trovata con la percentuale maggiore            
 
             int[] percentuali_armi = { percArmaC, percArmaP, percArmaF };
 
             int percMaggioreArmi = 0;
 
             //Trova la maggiore
-            for (int i=0; i < percentuali_armi.Length; i++)
+            for (int i = 0; i < percentuali_armi.Length; i++)
             {
                 if (percentuali_armi[i] > percMaggioreArmi)
                     percMaggioreArmi = percentuali_armi[i];
@@ -391,33 +368,41 @@ public class GiorniMainScript : MonoBehaviour
             }
             #endregion
         }
-        else
-        {
-            //Se esce la percentuale di un amico & è maggiore della lotta
-            if (percAmici <= min_percAmici && percAmici >= percLotta)
-                codaEventi.Enqueue(0);
-
-            //Se esce la percentuale della lotta & è maggiore degli amici
-            if (percLotta <= min_percLotta && percLotta >= percAmici)
-                codaEventi.Enqueue(9);
-        }
 
 
+        //Rende casuale la coda
         codaEventi = Mescola(codaEventi);
 
-        //--DEBUG--//
+        //Ultimo punto da mettere nella coda per informare che si torna in metro
+        codaEventi.Enqueue(7);
+
+
+        #region ---DEBUG---
+        
         string _ = "";
         foreach (var a in codaEventi)
-            _ += a + " - ";
-        print(_);
+            _ += a + " ";
+        print("<b>Coda generata</b>: " + _);
+        
+        #endregion
 
         #endregion
 
-        //Passa all'esplorazione
-        siVaAdEsplorare = true;
+
+        #region Passa all'esplorazione
+
+        //Avvia il crossfade
+        crossFadeMEScript.ScriviSiVaAdEsplorare(true);
+        //crossFadeMEScript.ScriviIniziaTransizione(true);  //OLD_NON USATO
+
+        //Notifica al GestoreTesti che è andato ad esplorare
+        txtsScript.ScriviSonoInEsplorazione(true);
+
+        //Inizia a scrivere
+        txtsScript.IniziaAScrivere();
         //opzScript.ScenaSuccessiva();
 
-
+        #endregion
     }
 
     Queue<int> Mescola(Queue<int> coda)
@@ -441,16 +426,16 @@ public class GiorniMainScript : MonoBehaviour
 
     public void FineNotte_Fuori()
     {
-        //Aggiorna al max la stanchezza del personaggio in esplorazione
-        txtsScript.LeggiPersonaggio().ScriviStanch(100f);
+        //Torna alla metro
+        crossFadeMEScript.ScriviSiVaAdEsplorare(false);
+        //opzScript.ScenaScegliTu(1);
+
+        //Notifica al GestoreTesti che non è più in esplorazione
+        txtsScript.ScriviSonoInEsplorazione(false);
 
         //Salva la giornata
         salvScript.SalvaPartita();
-
-        //Torna alla metro
-        siVaAdEsplorare = false;
-        //opzScript.ScenaScegliTu(1);
-
+        
         //Aggiorna il num dei giorni
         numGiorni++;
     }
@@ -459,18 +444,36 @@ public class GiorniMainScript : MonoBehaviour
 
     #region Funzioni per cambiare e leggere gli eventi
 
-    public int ProssimoEvento()
+    public int VediProssimoEvento()
     {
         int avantiIlProssimo = codaEventi.Peek();
-        
-        codaEventi.Dequeue();
 
         return avantiIlProssimo;
     }
 
+    public void TogliProssimoEvento()
+    {
+        codaEventi.Dequeue();
+    }
+
     public void SostituisciEventoAttuale(int tipo_ev)
     {
-        codaEventi.ToArray()[0] = tipo_ev;
+        //Salva la coda in una temporanea
+        int[] codaTemp;
+        codaTemp = codaEventi.ToArray();
+
+        //Cancella la coda vecchia
+        for (int i=0; i < codaEventi.Count; i++)
+            codaEventi.Dequeue();
+        
+        //Sostituisce nella coda temporanea il nuovo evento
+        codaTemp[0] = tipo_ev;
+
+        //Riprende ogni evento da quella temporanea
+        codaEventi = new Queue<int>(codaTemp);
+        
+        //Avvia il testo
+        txtsScript.ScriviTestoFinito(true);
     }
 
     #endregion

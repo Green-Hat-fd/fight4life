@@ -55,8 +55,6 @@ public class SalvataggiMainScript : MonoBehaviour
         }
 
 
-
-
         //Prende la posizione del file
         percorso_file = Application.dataPath + "/salvFile.txt";
 
@@ -146,6 +144,7 @@ public class SalvataggiMainScript : MonoBehaviour
                + risorseScript.LeggiMedicine() + "\n"
                + risorseScript.LeggiEnergia() + "\n"
                + risorseScript.LeggiTipoArma() + "\n"
+               + risorseScript.LeggiUsiArma() + "\n"
                + risorseScript.LeggiPezziRadio() + "\n";
 
         finale += giorniScript.LeggiNumeroGiorni() + "\n";
@@ -209,18 +208,19 @@ public class SalvataggiMainScript : MonoBehaviour
          * 26:  Medicine (tot)
          * 27:  Energia (tot)
          * 28:  tipo dell'Arma raccolta (0= nulla, 1= coltello, 2= pistola, 3= fucile)
-         * 29:  Pezzi della Radio (tot)
-         * 30:  numero dei Giorni
-         * 31:  
-         * 32:  ### STAZIONI ###
-         * 33:  num Max stazioni (4 o 5)
-         * 34:  stazione Attuale (da 0 a 5)
-         * 35:  num Zona esterno 1a stazione
-         * 36:  num Zona esterno 2a stazione
-         * 37:  num Zona esterno 3a stazione
-         * 38:  num Zona esterno 4a stazione
-         * 39:  num Zona esterno 5a stazione
-         * 40:
+         * 29:  Usi dell'Arma raccolta
+         * 30:  Pezzi della Radio (tot)
+         * 31:  numero dei Giorni
+         * 32:  
+         * 33:  ### STAZIONI ###
+         * 34:  num Max stazioni (4 o 5)
+         * 35:  stazione Attuale (da 0 a 5)
+         * 36:  num Zona esterno 1a stazione
+         * 37:  num Zona esterno 2a stazione
+         * 38:  num Zona esterno 3a stazione
+         * 39:  num Zona esterno 4a stazione
+         * 41:  num Zona esterno 5a stazione
+         * 41:
          */
         #endregion
     }
@@ -285,15 +285,17 @@ public class SalvataggiMainScript : MonoBehaviour
             acqua_load  = int.Parse(letturaDelFile[i_risorse + 2]),
             medicine_load = int.Parse(letturaDelFile[i_risorse + 3]),
             energia_load = int.Parse(letturaDelFile[i_risorse + 4]),
-            tipoArma_load = int.Parse(letturaDelFile[i_risorse + 5]),
-            pezziRadio_load = int.Parse(letturaDelFile[i_risorse + 6]),
-            numGiorni_load = int.Parse(letturaDelFile[i_risorse + 7]);
+            usiArma_load = int.Parse(letturaDelFile[i_risorse + 5]),
+            tipoArma_load = int.Parse(letturaDelFile[i_risorse + 6]),
+            pezziRadio_load = int.Parse(letturaDelFile[i_risorse + 7]),
+            numGiorni_load = int.Parse(letturaDelFile[i_risorse + 8]);
 
         //Load di tutte i numeri delle risorse
         risorseScript.ScriviCibo(cibo_load);
         risorseScript.ScriviAcqua(acqua_load);
         risorseScript.ScriviMedicine(medicine_load);
         risorseScript.ScriviEnergia(energia_load);
+        risorseScript.ScriviUsiArma(usiArma_load);
         risorseScript.ScriviTipoArma(tipoArma_load);
         risorseScript.ScriviPezziRadio(pezziRadio_load);
         
@@ -332,11 +334,16 @@ public class SalvataggiMainScript : MonoBehaviour
         CancellaFileSalvataggio();
 
         //Genera nuove risorse
-        risorseScript.ScriviCibo(Random.Range(5, 10));
-        risorseScript.ScriviAcqua(Random.Range(5, 10));
-        risorseScript.ScriviMedicine(Random.Range(5, 10));
+        risorseScript.ScriviCibo(Random.Range(5, 11));
+        risorseScript.ScriviAcqua(Random.Range(5, 11));
+        risorseScript.ScriviMedicine(Random.Range(1, 6));
         risorseScript.ScriviEnergia(10);
         risorseScript.ScriviPezziRadio(0);
+
+            /*Resetta armi e usi*/
+        risorseScript.ScriviUsiArma(0);
+        risorseScript.ScriviTipoArma(0);
+
 
         //Genera stazioni a caso
         for (int i = 0; i < stazScript.LeggiMaxStazioni(); i++)
@@ -349,7 +356,7 @@ public class SalvataggiMainScript : MonoBehaviour
         //zoneStazioni[zoneStazioni.Length - 1] = zoneStazioni[Random.Range(0, zoneStazioni.Length)];
         #endregion
 
-        /*Mescola (randomizza) le stazioni*/
+            /*Mescola (randomizza) le stazioni*/
         for (int i = 0; i < zoneStazioni.Length; i++)
         {
             int temp = zoneStazioni[i],
@@ -364,7 +371,10 @@ public class SalvataggiMainScript : MonoBehaviour
             stazScript.ScriviZonaDellaStazioneScelta(i, zoneStazioni[i]);
         }
 
-        //Mette le statistiche base
+            /*Mette la stazione dove ti trovi a quella iniziale*/
+        stazScript.ScriviStazioneAttuale(0);
+
+        //Mette le statistiche base ai personaggi
         for (int i = 0; i < 4; i++)
         {
             personStatsScript[i].ScriviVita(100);

@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 using TMPro;
 using System;
 
@@ -12,6 +12,8 @@ public class ManagerRisorse : MonoBehaviour
     int cibo, acqua, medicine, energia, pezziRadio;
     [SerializeField, Range(0, 3), Space(10)]
     int tipoArma;
+    [SerializeField, Space(5)]
+    int usiArma;
 
     //Variabile che indica se un'arma è stata trovata
     [SerializeField]
@@ -23,6 +25,13 @@ public class ManagerRisorse : MonoBehaviour
     TMP_Text[] counterRisorse = new TMP_Text[4];
     [SerializeField]
     TMP_Text counterPezziRadio;
+
+    [SerializeField, Space(15f)]
+    Image imgTipoArma;
+    [SerializeField, Tooltip("Ricorda: \n0: deve essere vuoto (non hai armi), \n1: Coltello, \n2: Pistola, \n3: Fucile")]
+    Sprite[] sprArmi = new Sprite[4];
+    [SerializeField]
+    TMP_Text txtUsoArma;
 
 
     private void Awake()
@@ -37,13 +46,26 @@ public class ManagerRisorse : MonoBehaviour
     void Update()
     {
         LimitaRisorse();
-        CambiaCounterUi();
+        CambiaUI();
 
         //Mette falsa se NON abbiamo trovato nessun'arma
         haUnArma = tipoArma > 0;
 
         //Mette vera se ha trovato 5 (o più) pezzi della radio
         radioTrovata = pezziRadio >= 5;
+
+        //Perdi l'arma quando finisci i suoi usi
+        if(usiArma <= 0)
+        {
+            if(tipoArma != 0)
+                tipoArma = 0;
+
+            //Nascondi il testo degli usi
+            txtUsoArma.gameObject.SetActive(false);
+        }
+        else
+            txtUsoArma.gameObject.SetActive(true);
+
     }
 
     #region Funzioni cambio num risorse
@@ -105,6 +127,15 @@ public class ManagerRisorse : MonoBehaviour
     }
 
     /// <summary>
+    /// Toglie 1 dagli Usi dell'arma
+    /// </summary>
+    public void TogliUsiArma()
+    {
+        if(usiArma > 0)
+            usiArma--;
+    }
+
+    /// <summary>
     /// Toglie 1 dai pezzi della Radio
     /// </summary>
     public void    TogliPezziRadio()
@@ -152,6 +183,11 @@ public class ManagerRisorse : MonoBehaviour
         return tipoArma;
     }
 
+    public int LeggiUsiArma()
+    {
+        return usiArma;
+    }
+
     public int LeggiPezziRadio()
     {
         return pezziRadio;
@@ -196,6 +232,11 @@ public class ManagerRisorse : MonoBehaviour
         tipoArma = tA;
     }
 
+    public void ScriviUsiArma(int uA)
+    {
+        usiArma = uA;
+    }
+
     public void ScriviPezziRadio(int pR)
     {
         pezziRadio = pR;
@@ -212,15 +253,19 @@ public class ManagerRisorse : MonoBehaviour
         medicine = Mathf.Clamp(medicine, 0, 99);
         energia = Mathf.Clamp(energia, 0, 99);
         pezziRadio = Mathf.Clamp(pezziRadio, 0, 99);
+        usiArma = Mathf.Clamp(usiArma, 0, 99);
     }
 
-    void CambiaCounterUi()
+    void CambiaUI()
     {
         counterRisorse[0].text = cibo.ToString(); //del cibo
         counterRisorse[1].text = acqua.ToString(); //dell'acqua
         counterRisorse[2].text = medicine.ToString(); //delle medicine
         counterRisorse[3].text = energia.ToString(); //dell'energia
         counterPezziRadio.text = pezziRadio.ToString(); //dei pezzi della radio
+        txtUsoArma.text = usiArma.ToString(); //dell'uso dell'arma
+
+        imgTipoArma.sprite = sprArmi[tipoArma]; //del tipo dell'arma
     }
 
     #endregion

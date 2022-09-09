@@ -1,4 +1,4 @@
-# TESTO IN METRO #
+ï»¿# TESTO IN METRO #
 The atmosphere of the subway is very gloomy today, but we have to stay strong if we want to survive and leave this place as soon as possible.
 If we will get out of here alive, we should celebrate in that famous place that Niko always told us about... but are we sure it exists?
 It would be a nice idea to decorate this place and make it look more hospitable, after all it's gonna be our home for a while.
@@ -10,49 +10,85 @@ It would be so nice to recreate one of Gino's recipes, if only we had the right 
 
 
 # CIBO #
-Behind this drawer there might be something <b>interesting</b>. [/p] decided to check and it looks like someone left his back <b>Food</b> here!<br><br>(You found [/x] food)
-It seems that someone left some unopened <b>Food</b> cans here! Surely whoever forgot it here won't miss them.<br><br>(You picked up [/x] food)
+Behind this drawer there might be something <b>interesting</b>. [/p] decided to check and it looks like someone left his back <b>Food</b> here!<br><br>(You found [/x] food)$
+It seems that someone left some unopened <b>Food</b> cans here! Surely whoever forgot it here won't miss them.<br><br>(You picked up [/x] food)$
 
 
 # ACQUA #
-With this heat, trying to find something to drink is rather difficult... Perhaps that corpse over there with some cat's eyes clothes seems to have some <b>Water</b> bottles with it! And yet the body is all melted... Who knows what ever happened to them...<br><br>(You took [/x] water)
-Today might be [/p]'s lucky day! Another handful of survivors decided to give [/p] some <b>Water</b> that they've found. However they didn't define where it's from...<br><br>(You got [/x] water)
+With this heat, trying to find something to drink is rather difficult... Perhaps that corpse over there with some cat's eyes clothes seems to have some <b>Water</b> bottles with it! And yet the body is all melted... Who knows what ever happened to them...<br><br>(You took [/x] water)$
+Today might be [/p]'s lucky day! Another handful of survivors decided to give [/p] some <b>Water</b> that they've found. However they didn't define where it's from...<br><br>(You got [/x] water)$
 
 
 # MEDICINE #
-[/p] trips on something while walking... By looking into it, it's some <b>Batteries</b>!<br><br>(You fetched [/x] batteries)
-Alongside a wall torn down, [/p] sees a clochard near death. He has some <b>Batteries</b> in his hand, and it looks as if he wants to offer them to [/p].<br><br>(You obtained [/x] batteries)
+That seems to be an untouched medikit full of <b>Medicines</b>! It's unbelievable how [/p] managed to find one, hopefully they are all not expired.<br><br>(You took [/x] medicines)$
+There's something beneath this carpet! By taking a better look, [/p] has found some <b>Medicines</b>! The genius who thought hiding them in such a place was a good idea will try harder next time.<br><br>(You picked up [/x] medicines)$
 
 
 # ENERGIA #
-That seems to be an untouched medikit full of <b>Medicines</b>! It's unbelievable how [/p] managed to find one, hopefully they are all not expired.<br><br>(You took [/x] medicines)
-There's something beneath this carpet! By taking a better look, [/p] has found some <b>Medicines</b>! The genius who thought hiding them in such a place was a good idea will try harder next time.<br><br>(You picked up [/x] medicines)
+[/p] trips on something while walking... By looking into it, it's some <b>Batteries</b>!<br><br>(You fetched [/x] batteries)$
+Alongside a wall torn down, [/p] sees a clochard near death. He has some <b>Batteries</b> in his hand, and it looks as if he wants to offer them to [/p].<br><br>(You obtained [/x] batteries)$
+
+
+# COMBATTIMENTO #
+In the darkness, [/p] sees something move.
+[/p] decides to face the creature.$
+Luckily a well-aimed blow killed that... thing... [/p] chose to took the [/r] that it was carrying.<br><br>(You obtained [/lx] [/r])$
+A shot was fired, but you hit something metal... maybe it's better to go before that... thing realize where the noise came from.$
+You ran away before the creature notices you.$
+It looks like a band of survivors had the same idea of [/p] to scavenge some supplies on this spot... and they appear to have not so good intentions!
+[/p] fight versus the marauders.$
+[/p] has been training a lot with that weapon and managed to take all them down. Who knows what type of people they were before the apocalypse... But it's pointless to cry over spilled blood, [/p] tries to fetch a thing or two.<br><br>(You obtained [/lx] [/r])$
+That band wasn't joking and they have unfortunately defeated [/p].$
+There's too many of them, it's useless to face them.$
+[/p] notices a madman in the distance, so chooses to sneak around to avoid being seen<>... however [/p] ends up being right under the nose of the psycho.
+[/p] attempts to brawl with the man.$
+It wasn't clear if that guy was actually crazy or just desperate, but now it's none of [/p]'s concern. Besides, it seems that he was carrying something.<br><br>(You obtained [/lx] [/r])$
+By the look of it, this strange person has proved to be much stronger that it seemed, in fact he had beaten [/p] (who is running away as fast as they can).$
+Better not mess with crazy people, better run for the hills.$
+A bunch of criminals heavily armed ambush [/p]. Their menacing faces don't want to play around.
+[/p] takes courage and begins to fight them.$
+They seem dangerous, although [/p] is even more dangerous! Their enemies will have to do better than this next time. Moreover, [/p] took some supplies from what they left.<br><br>(You obtained [/lx] [/r])$
+They hurt [/p] really bad... It couldn't get any worse...$
+[/p]'s life is much more important to be watered like this.$
+Suddenly, an afraid survivor aims a gun at [/p] with his shaking hand.
+It seems like someone declared war on [/p].$
+He seemed young and a novice, but if [/p] hadn't overcome him, [/p] would have been 6 feet under, better pick up what he had and leave right away.<br><br>(You obtained [/lx] [/r])$
+Today [/p] discovered how dangerous scared people be.$
+All it took was to shout to scare that guy away, maybe it's better for [/p] to leave, before someone who might have heard could track them down.$
+
 
 
 # PEZZO DELLA RADIO #
-This strange metallic piece reminds [/p] of something, could it be a part of the <b>Radio</b> that will be useful to the team?<br><br>(You found a piece of the radio)
-Who would have thought that in a place like this, it would've been possible to find a part of a <b>Radio</b>. Since when the apocalypse started, surprises never end<br><br>(You took a piece of the radio)
-A poor boozer gives a strange piece of metal to [/p] which he found on his way and he says that he doesn't need it. By taking a closer look, it looks like a part for crafting the <b>Radio</b>! It's better for [/p] than that buzzed man.<br><br>(You got a piece of the radio)
-On this table there's a <b>Radio</b>! [/p] tries to turn it on but it doesn't seem to be working... But wonders, probably some parts may be working.<br><br>(You picked up a piece of the radio)
+This strange metallic piece reminds [/p] of something, could it be a part of the <b>Radio</b> that will be useful to the team?<br><br>(You found a piece of the radio)$
+Who would have thought that in a place like this, it would've been possible to find a part of a <b>Radio</b>. Since when the apocalypse started, surprises never end<br><br>(You took a piece of the radio)$
+A poor boozer gives a strange piece of metal to [/p] which he found on his way and he says that he doesn't need it. By taking a closer look, it looks like a part for crafting the <b>Radio</b>! It's better for [/p] than that buzzed man.<br><br>(You got a piece of the radio)$
+On this table there's a <b>Radio</b>! [/p] tries to turn it on but it doesn't seem to be working... But wonders, probably some parts may be working.<br><br>(You picked up a piece of the radio)$
 
 
 # COLTELLO TROVATO #
-There may have been an underground fighting around here, since [/p] found a bloody <b>Knife</b>. Doesn't seem to be anybody around here with the intent of taking this weapon back... all the better.<br><br>(You found the Knife)
-Someone tried to pick this lock with a <b>Knife</b>, although it's enough for [/p], who seems to have found a new weapon to defend themself.<br><br>(You picked up the Knife)
+There may have been an underground fighting around here, since [/p] found a bloody <b>Knife</b>. Doesn't seem to be anybody around here with the intent of taking this weapon back... all the better.<br><br>(You found the Knife)$
+Someone tried to pick this lock with a <b>Knife</b>, although it's enough for [/p], who seems to have found a new weapon to defend themself.<br><br>(You picked up the Knife)$
 
 
 # PISTOLA TROVATA #
-There is a corpse of a policeman over here... Nevertheless he has a well loaded <b>Gun</b>! Now it's [/p]'s property.<br><br>(You found the Gun)
-There was a gunfight between two gangsters earlier and now they're gone, it's better to pick up this <b>Gun</b> loaded with some bullets and walk away.<br><br>(You picked up the Gun)
+There is a corpse of a policeman over here... Nevertheless he has a well loaded <b>Gun</b>! Now it's [/p]'s property.<br><br>(You found the Gun)$
+There was a gunfight between two gangsters earlier and now they're gone, it's better to pick up this <b>Gun</b> loaded with some bullets and walk away.<br><br>(You picked up the Gun)$
 
 
 # FUCILE TROVATO #
-[/p] didn't know that this was a military zone, yet there's no sign of them. The good thing is that [/p] has found a loaded <b>Shotgun</b> rummaging around.<br><br>(You found the Shotgun)
-Today might not be [/p]'s birthday, but they've received a nice gift! And it's a nice <b>Shotgun</b> too! Alas the person who had it is now dead, but it would be a shame to leave it here untouched...<br><br>(You found the Shotgun)
+[/p] didn't know that this was a military zone, yet there's no sign of them. The good thing is that [/p] has found a loaded <b>Shotgun</b> rummaging around.<br><br>(You found the Shotgun)$
+Today might not be [/p]'s birthday, but they've received a nice gift! And it's a nice <b>Shotgun</b> too! Alas the person who had it is now dead, but it would be a shame to leave it here untouched...<br><br>(You found the Shotgun)$
 
 
 # MORTE DEI PERSONAGGI #
-It was an honor to meet [/p], yet they didn’t make it.
-[/p]’s time is over, may their soul rest in peace.
-We did our best for [/p], but it wasn’t enough.
-[/p] fought bravely, it’s a shame that they are gone so early.
+It was an honor to meet [/p], yet they didn't make it.$
+[/p]'s time is over, may their soul rest in peace.$
+We did our best for [/p], but it wasn't enough.$
+[/p] fought bravely, it's a shame that they are gone so early.$
+
+
+# SI TORNA IN METRO #
+[/p] tried to look for other resorces, but they didn't find anything at all... Maybe it's time to go back to the base.<br><br>(End of the exploration)$
+It's getting light, [/p] better get going to the subway as faster as possible.<br><br>(End of the exploration)$
+After so much seaching and foraging, [/p] can't take it anymore and must go back to the subway.<br><br>(End of the exploration)$
+At this point, with the sun melting every single thing, it's almost impossible to find something useful in all of this junk. Because of that, [/p] it's already on the way back.<br><br>(End of the exploration)$

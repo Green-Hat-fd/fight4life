@@ -9,9 +9,11 @@ public class Miragame_delleArmi : MonoBehaviour
     [SerializeField]
     ManagerRisorse risorseScript;
     GestoreTesti testiScript;
+    GiorniMainScript giorniScript;
 
     [SerializeField, Tooltip("Se non metti lo slider, lo prende da sé stesso \noppure lo prende dai figli")]
     Slider sliderMG;
+    Animator animSlider;
 
     [SerializeField, Range(0, 3)]
     int arma;
@@ -34,8 +36,10 @@ public class Miragame_delleArmi : MonoBehaviour
     Vector2 range_rallentaFuc;      [-0.15, 0.15]
     */
 
+    [SerializeField]
     bool siMuove,
-         aperto = false;
+         aperto = false,
+         soloUnaVolta = true;
 
     [Header("\"Animazione\" della barretta")]
     [SerializeField]
@@ -52,17 +56,21 @@ public class Miragame_delleArmi : MonoBehaviour
     public static float percentualeUscita;
 
 
-    private void Start()
+    private void OnEnable()
     {
         //Se non trova il component Slider, allora prendi quello dei figli,
         //altrimenti (lo ha trovato) mette il suo
         sliderMG = GetComponent<Slider>() != null ? GetComponent<Slider>() : GetComponentInChildren<Slider>();
+        animSlider = GetComponent<Animator>() != null ? GetComponent<Animator>() : GetComponentInChildren<Animator>();
         
         risorseScript = FindObjectOfType<ManagerRisorse>();
         testiScript = FindObjectOfType<GestoreTesti>();
+        giorniScript = FindObjectOfType<GiorniMainScript>();
         
         if (risorseScript == null)
             risorseScript = FindObjectOfType<ManagerRisorse>();
+
+        aperto = false;
 
         siMuove = true;
 
@@ -80,9 +88,6 @@ public class Miragame_delleArmi : MonoBehaviour
 
     void Update()
     {
-          //Se non trova il component Animator, allora prendi quello dei figli,
-          //altrimenti (lo ha trovato) mette il suo
-        Animator animSlider = GetComponent<Animator>() != null ? GetComponent<Animator>() : GetComponentInChildren<Animator>();
         int cambioMus = new int();
         
         arma = risorseScript.LeggiTipoArma();
@@ -94,10 +99,12 @@ public class Miragame_delleArmi : MonoBehaviour
         {
             animSlider.SetBool("Aperto", true);
             cambioMus = 1;
+            soloUnaVolta = true;
         }
         else
         {
             animSlider.SetBool("Aperto", false);
+            cambioMus = 0;
         }
         #endregion
 
@@ -119,15 +126,19 @@ public class Miragame_delleArmi : MonoBehaviour
         }
         else
         {
-            //Avverte che si è premuto [Spazio]
-            barretta.sprite = spr_barrChiara;
-            cambioMus = 0;
+            if (soloUnaVolta)
+            {
+                //Avverte che si è premuto [Spazio]
+                barretta.sprite = spr_barrChiara;
 
-            //Ritorna il valore dove si è fermato lo slider
-            percentualeUscita = curvaRisultatoMinigame.Evaluate(Mathf.Abs(sliderMG.value));
+                //Ritorna il valore dove si è fermato lo slider
+                percentualeUscita = curvaRisultatoMinigame.Evaluate(Mathf.Abs(sliderMG.value));
 
-            //Appena finisce l'animazione, chiude il minigame
-            StartCoroutine(FineMinigame());
+                //Appena finisce l'animazione, chiude il minigame
+                FineMinigame();
+
+                soloUnaVolta = false;
+            }
         }
         #endregion
 
@@ -211,14 +222,21 @@ public class Miragame_delleArmi : MonoBehaviour
     }
     #endregion
 
-    IEnumerator FineMinigame()
+    void FineMinigame()
     {
-        yield return new WaitForSeconds(2.5f);
-
         //Chiude il minigame
         aperto = false;
 
-        //Va avanti nel testo
+        animSlider.SetBool("Aperto", false);
+
+
+        //Sceglie una percentuale a caso
+        float percFinale = Random.Range(0, 101);
+
+
+        int risultato = percFinale <= percentualeUscita ? 903 : 902;
+
+        giorniScript.SostituisciEventoAttuale(risultato);
 
     }
 
