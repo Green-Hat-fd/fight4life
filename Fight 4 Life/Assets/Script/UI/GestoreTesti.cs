@@ -75,8 +75,10 @@ public class GestoreTesti : MonoBehaviour
         //}
         #endregion
 
-        dialoghi_Ita = LeggiEDividiTesto(fileTesto_Ita);
-        dialoghi_Eng = LeggiEDividiTesto(fileTesto_Eng);
+        dialoghi_Ita = LeggiEDividiTesto(fileTesto_Ita, true);
+        dialoghi_Eng = LeggiEDividiTesto(fileTesto_Eng, false);
+
+        
 
         /* RISULTATO FINALE SIMILE A:
          *   [d1.a] [d2.a] [d3.a]
@@ -233,7 +235,7 @@ public class GestoreTesti : MonoBehaviour
 
     #region Funz. che divide e restituisce il testo in una matrice (array 2D di stringhe)
 
-    string[][] LeggiEDividiTesto(TextAsset fileTXT)
+    string[][] LeggiEDividiTesto(TextAsset fileTXT, bool seDevoCercare)
     {
         string[][] contenitore = null;
 
@@ -250,47 +252,50 @@ public class GestoreTesti : MonoBehaviour
 
         #region Cerca le "regioni"
 
-        //Cerca nell'array i punti di inizio delle varie "regioni"
-        //(stesso di SalvataggiMainScript.cs)
-        for (int i = 0; i < temp.Length; i++)
+        if(seDevoCercare)
         {
-            string r = temp[i];
+            //Cerca nell'array i punti di inizio delle varie "regioni"
+            //(stesso di SalvataggiMainScript.cs)
+            for (int i = 0; i < temp.Length; i++)
+            {
+                string r = temp[i];
 
-            if (r.Contains("# CIBO #"))
-                i_Cibo = i;
+                if (r.Contains("# CIBO #"))
+                    i_Cibo = i;
 
-            if (r.Contains("# ACQUA #"))
-                i_Acqua = i;
+                if (r.Contains("# ACQUA #"))
+                    i_Acqua = i;
 
-            if (r.Contains("# MEDICINE #"))
-                i_Medicine = i;
+                if (r.Contains("# MEDICINE #"))
+                    i_Medicine = i;
 
-            if (r.Contains("# ENERGIA #"))
-                i_Energia = i;
+                if (r.Contains("# ENERGIA #"))
+                    i_Energia = i;
 
-            if (r.Contains("# COMBATTIMENTO #"))
-                i_Combatti = i;
+                if (r.Contains("# COMBATTIMENTO #"))
+                    i_Combatti = i;
 
-            if (r.Contains("# PEZZO DELLA RADIO #"))
-                i_pezziRadio = i;
+                if (r.Contains("# PEZZO DELLA RADIO #"))
+                    i_pezziRadio = i;
 
-            if (r.Contains("# COLTELLO TROVATO #"))
-                i_trovaColt = i;
+                if (r.Contains("# COLTELLO TROVATO #"))
+                    i_trovaColt = i;
 
-            if (r.Contains("# PISTOLA TROVATA #"))
-                i_trovaPist = i;
+                if (r.Contains("# PISTOLA TROVATA #"))
+                    i_trovaPist = i;
 
-            if (r.Contains("# FUCILE TROVATO #"))
-                i_trovaFuc = i;
+                if (r.Contains("# FUCILE TROVATO #"))
+                    i_trovaFuc = i;
 
-            if (r.Contains("# TESTO IN METRO #"))
-                i_testoInMetro = i;
+                if (r.Contains("# TESTO IN METRO #"))
+                    i_testoInMetro = i;
 
-            if (r.Contains("# MORTE DEI PERSONAGGI #"))
-                i_morteDiUnPers = i;
+                if (r.Contains("# MORTE DEI PERSONAGGI #"))
+                    i_morteDiUnPers = i;
 
-            if (r.Contains("# SI TORNA IN METRO #"))
-                i_siTornaInMetro = i;
+                if (r.Contains("# SI TORNA IN METRO #"))
+                    i_siTornaInMetro = i;
+            }
         }
         #endregion
 
@@ -388,7 +393,7 @@ public class GestoreTesti : MonoBehaviour
             char c = fraseDaScrivere[i];
 
 
-            #region Evita i caratteri speciali (come <i></i> o <br>)
+            #region NON_USATO_Evita i caratteri speciali (come <i></i> o <br>)
 
             //if (fraseDaScrivere[i+1] == '<')
             //{
@@ -424,7 +429,7 @@ public class GestoreTesti : MonoBehaviour
                 case ';':
                     txtDaScrivere.text += c;
 
-                    sec = .1f;
+                    sec = .25f;
                     break;
                 
                 //Scrive il carattere, ma aspetta con una pausa più lunga (del punto)
@@ -682,7 +687,7 @@ public class GestoreTesti : MonoBehaviour
             case 91:  //Coltello trovato
                 i_daDoveIniziare = i_trovaColt + i_addArmi;
 
-                managRisScript.ScriviUsiArma(UnityEngine.Random.Range(7, 11)); //A caso tra 7 e 10
+                managRisScript.ScriviUsiArma(UnityEngine.Random.Range(7, 11)); //A caso tra 7 e 10;
                 managRisScript.ScriviTipoArma(1);
                 giorniScript.TogliProssimoEvento();
                 break;
