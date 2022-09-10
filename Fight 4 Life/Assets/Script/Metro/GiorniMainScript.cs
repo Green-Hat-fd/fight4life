@@ -294,7 +294,7 @@ public class GiorniMainScript : MonoBehaviour
         if (percRadio <= min_percRadio) codaEventi.Enqueue(5);
         if (managRis.LeggiHaUnArma())
         {
-            int risultatoMaggiore = percAmici <= percLotta ? 0 : 9;
+            int risultatoMaggiore = percAmici <= percLotta ? 9 : 0;
 
             switch (risultatoMaggiore)
             {
