@@ -38,13 +38,14 @@ public class CharacterStats : MonoBehaviour
 
     private void Update()
     {
+        LimitaStats();
+
+
         //Il personaggio mangia (Diminuisce la fame se ha mangiato)
         if (mangiato && !sonoMorto)
         {
             if (fame >= 0 || fame < MAX_fame)
                 fame -= 25f;
-
-            fame = Mathf.Clamp(fame, 0f, MAX_fame);
 
             #region --DEBUG--
             print(gameObject.name + " ha mangiato");
@@ -59,8 +60,6 @@ public class CharacterStats : MonoBehaviour
             if (sete >= 0 || sete < MAX_sete)
                 sete -= 25f;
 
-            sete = Mathf.Clamp(sete, 0f, MAX_sete);
-
             #region --DEBUG--
             print(gameObject.name + " ha bevuto");
             #endregion
@@ -73,8 +72,6 @@ public class CharacterStats : MonoBehaviour
         {
             if (vita >= 0 || vita < MAX_vita)
                 vita += 45f;
-
-            vita = Mathf.Clamp(vita, 0f, MAX_vita);
 
             #region --DEBUG--
             print(gameObject.name + " ha preso le medicine");
@@ -115,57 +112,41 @@ public class CharacterStats : MonoBehaviour
     public void ScriviVita(float v)
     {
         vita = v;
-        
-        vita = Mathf.Clamp(vita, 0f, MAX_vita);
     }
 
     public void ScriviFame(float f)
     {
         fame = f;
-        
-        fame = Mathf.Clamp(fame, 0f, MAX_fame);
     }
 
     public void ScriviSete(float s)
     {
         sete = s;
-        
-        sete = Mathf.Clamp(sete, 0f, MAX_sete);
     }
 
     public void ScriviStanch(float s)
     {
         stanchezza = s;
-
-        stanchezza = Mathf.Clamp(stanchezza, 0f, MAX_stam);
     }
 
     public void TogliAllaVita(float v_toSubt)
     {
         vita -= v_toSubt;
-        
-        vita = Mathf.Clamp(vita, 0f, MAX_vita);
     }
 
     public void AggiungiAllaFame(float f_toAdd)
     {
         fame += f_toAdd;
-        
-        fame = Mathf.Clamp(fame, 0f, MAX_fame);
     }
 
     public void AggiungiAllaSete(float s_toAdd)
     {
         sete += s_toAdd;
-        
-        sete = Mathf.Clamp(sete, 0f, MAX_sete);
     }
 
     public void AggiungiAllaStanch(float s_toAdd)
     {
         stanchezza += s_toAdd;
-
-        stanchezza = Mathf.Clamp(stanchezza, 0f, MAX_stam);
     }
 
     #endregion
@@ -221,6 +202,18 @@ public class CharacterStats : MonoBehaviour
     public bool LeggiInEsplorazione()
     {
         return inEsplorazione;
+    }
+
+    #endregion
+
+    #region Limita ogni statistica
+
+    void LimitaStats()
+    {
+        vita = Mathf.Clamp(vita, 0f, MAX_vita);
+        fame = Mathf.Clamp(fame, 0f, MAX_fame);
+        sete = Mathf.Clamp(sete, 0f, MAX_sete);
+        stanchezza = Mathf.Clamp(stanchezza, 0f, MAX_stam);
     }
 
     #endregion
