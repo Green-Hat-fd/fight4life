@@ -115,21 +115,29 @@ public class CharacterStats : MonoBehaviour
     public void ScriviVita(float v)
     {
         vita = v;
+        
+        vita = Mathf.Clamp(vita, 0f, MAX_vita);
     }
 
     public void ScriviFame(float f)
     {
         fame = f;
+        
+        fame = Mathf.Clamp(fame, 0f, MAX_fame);
     }
 
     public void ScriviSete(float s)
     {
         sete = s;
+        
+        sete = Mathf.Clamp(sete, 0f, MAX_sete);
     }
 
     public void ScriviStanch(float s)
     {
         stanchezza = s;
+
+        stanchezza = Mathf.Clamp(stanchezza, 0f, MAX_stam);
     }
 
     public void TogliAllaVita(float v_toSubt)

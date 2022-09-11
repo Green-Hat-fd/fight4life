@@ -186,17 +186,17 @@ public class SalvataggiMainScript : MonoBehaviour
          *  4:  - Fame
          *  5:  - Sete
          *  6:  - Stanchezza
-         *  7:  Nome (influencer-medico-cuoco)
+         *  7:  Nome (influencer)
          *  8:  - Vita
          *  9:  - Fame
          * 10:  - Sete
          * 11:  - Stanchezza
-         * 12:  Nome (influencer-medico-cuoco)
+         * 12:  Nome (medico)
          * 13:  - Vita
          * 14:  - Fame
          * 15:  - Sete
          * 16:  - Stanchezza
-         * 17:  Nome (influencer-medico-cuoco)
+         * 17:  Nome (cuoco)
          * 18:  - Vita
          * 19:  - Fame
          * 20:  - Sete
@@ -259,11 +259,6 @@ public class SalvataggiMainScript : MonoBehaviour
 
         #region --Personaggi--
 
-            /*Trasforma da string a float*/
-        float vita_load = float.Parse(letturaDelFile[i_personaggi + 3]),
-              fame_load = float.Parse(letturaDelFile[i_personaggi + 4]),
-              sete_load = float.Parse(letturaDelFile[i_personaggi + 5]),
-              stanch_load = float.Parse(letturaDelFile[i_personaggi + 6]);
 
         //Load del massimo dei personaggi (4 o 5)
         //.ScriviMaxPersonaggi(letturaDelFile[i_personaggi + 1]);
@@ -271,6 +266,13 @@ public class SalvataggiMainScript : MonoBehaviour
         //Load delle stats di tutt i personaggi
         for (int i = 0; i < 4; i++)
         {
+            /*Trasforma da string a float*/
+            int i_nomePerson = (5 * i) + 2;
+            float vita_load = float.Parse(letturaDelFile[i_nomePerson + 1]),
+                  fame_load = float.Parse(letturaDelFile[i_nomePerson + 2]),
+                  sete_load = float.Parse(letturaDelFile[i_nomePerson + 3]),
+                  stanch_load = float.Parse(letturaDelFile[i_nomePerson + 4]);
+
             personStatsScript[i].ScriviVita(vita_load);
             personStatsScript[i].ScriviFame(fame_load);
             personStatsScript[i].ScriviSete(sete_load);
@@ -280,7 +282,7 @@ public class SalvataggiMainScript : MonoBehaviour
 
         #region --Risorse--
 
-            /*Trasforma da string a int*/
+        /*Trasforma da string a int*/
         int cibo_load = int.Parse(letturaDelFile[i_risorse + 1]),
             acqua_load  = int.Parse(letturaDelFile[i_risorse + 2]),
             medicine_load = int.Parse(letturaDelFile[i_risorse + 3]),
